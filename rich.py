@@ -1,9 +1,13 @@
-import os
-import sys
-from Tkinter import Tk
-from tkFileDialog import askopenfilename, asksaveasfilename
 from sm import *
-
+from tkFileDialog import askopenfilename, asksaveasfilename
+import Tkinter as tk
+from Tkinter import Tk
+import sys
+import os
+global noteSkin
+noteSkin = "cybercouples"
+global globalOffset
+globalOffset = -0.030
 
 
 def pause(str="<Press enter to peace out>"):
@@ -23,14 +27,12 @@ def usage():
     exit(0)
 
 
-def rich(sm, output):
-    ##KURNA OFFSET JAK JA GO NIE NAWIDZeKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
-    #globalOfset = 0.024
-    globalOfset = 0.030
+def rich(sm, output,noteskin):
+    # KURNA OFFSET JAK JA GO NIE NAWIDZeKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
     noteSkinOffset = 0.001
     thirdPlayerOffset = 0.003
     attackTime = 0.010
-    ##KURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
+    # KURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
 
     bpms = sm.bpms
     stops = dict(sm.stops)
@@ -71,9 +73,11 @@ def rich(sm, output):
             new_stops.add(b)
             blues.append((b+1.0/48, n))
         for b, n in notes.layers[2]:
-			# TODO changing BPMs
+            # TODO changing BPMs
+            global globalOffset
             new_stops.add(b+1.0/48)
-            new_attacks.add((b/(sm.bpms[0][1]/60) - sm.offset +noteSkinOffset +globalOfset,attackTime))
+            new_attacks.add(
+                (b/(sm.bpms[0][1]/60) - sm.offset + noteSkinOffset - globalOffset, attackTime))
             yellows.append((b+2.0/48, n))
 
         print new_attacks
@@ -88,40 +92,40 @@ def rich(sm, output):
         while ri < len(reds) or bi < len(blues) or yi < len(yellows):
             if ri < len(reds) and bi < len(blues) and yi < len(yellows):
                 if reds[ri][0] <= blues[bi][0]:
-					if reds[ri][0] <= yellows[yi][0]:
-						combined.append(reds[ri])
-						ri += 1
-					else:
-						combined.append(yellows[yi])
-						yi += 1
+                    if reds[ri][0] <= yellows[yi][0]:
+                        combined.append(reds[ri])
+                        ri += 1
+                    else:
+                        combined.append(yellows[yi])
+                        yi += 1
                 else:
                     if blues[bi][0] <= yellows[yi][0]:
                         combined.append(blues[bi])
                         bi += 1
                     else:
-						combined.append(yellows[yi])
-						yi += 1
+                        combined.append(yellows[yi])
+                        yi += 1
             elif ri < len(reds) and bi < len(blues):
                 if reds[ri][0] <= blues[bi][0]:
-					combined.append(reds[ri])
-					ri += 1
+                    combined.append(reds[ri])
+                    ri += 1
                 else:
-					combined.append(blues[bi])
-					bi += 1
+                    combined.append(blues[bi])
+                    bi += 1
             elif yi < len(yellows) and bi < len(blues):
                 if yellows[yi][0] <= blues[bi][0]:
-					combined.append(yellows[yi])
-					yi += 1
+                    combined.append(yellows[yi])
+                    yi += 1
                 else:
-					combined.append(blues[bi])
-					bi += 1
+                    combined.append(blues[bi])
+                    bi += 1
             elif yi < len(yellows) and ri < len(reds):
                 if yellows[yi][0] <= reds[ri][0]:
-					combined.append(yellows[yi])
-					yi += 1
+                    combined.append(yellows[yi])
+                    yi += 1
                 else:
-					combined.append(reds[ri])
-					ri += 1
+                    combined.append(reds[ri])
+                    ri += 1
             elif ri < len(reds):
                 combined.append(reds[ri])
                 ri += 1
@@ -129,9 +133,9 @@ def rich(sm, output):
                 combined.append(blues[bi])
                 bi += 1
             else:
-				combined.append(yellows[yi])
-				yi +=1 
-			
+                combined.append(yellows[yi])
+                yi += 1
+
         notes.layers = [combined]
 
     new_stops = [x for x in new_stops]
@@ -162,7 +166,6 @@ def rich(sm, output):
 
     stops = [x for x in stops.items()]
     stops.sort()
-    
 
     filteredStops = []
     lastWasWarp = False
@@ -172,15 +175,15 @@ def rich(sm, output):
     for i in stops:
         if removeNext:
 
-            removeNext=False
+            removeNext = False
             doubleNext = True
         elif doubleNext:
             doubleNext = False
-            filteredStops.append((i[0],(i[1]-lastValue)))
+            filteredStops.append((i[0], (i[1]-lastValue)))
         else:
-            if lastWasWarp: 
-                if i[1]<0:
-                    filteredStops.append((i[0],i[1]+thirdPlayerOffset))
+            if lastWasWarp:
+                if i[1] < 0:
+                    filteredStops.append((i[0], i[1]+thirdPlayerOffset))
                     lastValue = i[1]+thirdPlayerOffset
                 else:
                     filteredStops.append(i)
@@ -188,14 +191,14 @@ def rich(sm, output):
                 filteredStops.append(i)
 
         if lastWasWarp:
-            if i[1]<0:
+            if i[1] < 0:
                 print '2 warpy owowowo'
                 removeNext = True
                 lastWasWarp = False
             else:
                 lastWasWarp = False
-            
-        elif i[1]<0:
+
+        elif i[1] < 0:
             lastWasWarp = True
         else:
             lastWasWarp = False
@@ -211,16 +214,66 @@ def rich(sm, output):
     sm.attacks = new_attacks
     sm.notes = couples
 
-    open(output, "wb").write(sm.barf("\r\n", 1))
+    open(output, "wb").write(sm.barf("\r\n", 1,noteskin))
 
 
-if __name__ == "__main__":
-    #Tk().withdraw()
-#	if len(sys.argv) <= 1:
-#		usage()
+fields = ['offset','-0.030'], ['noteskin','cybercouples']
+
+
+def fetch(entries):
+    for entry in entries:
+        field = entry[0]
+        text = entry[1].get()
+        print('%s: "%s"' % (field, text))
+        if field[0]=='offset':
+            global globalOffset
+            globalOffset = float(entry[1].get())
+        elif field[0]=='noteskin':
+            global noteSkin
+            noteSkin = entry[1].get()
+
     input = askopenfilename(filetypes=[("sm files", "*.sm")])
     output = asksaveasfilename(
         filetypes=[("sm files", "*.sm")], initialfile=[('output.sm')])
+
+    try:
+        sm_raw = open(input, "rb").read()
+    except:
+        peace("Error:  Cannot open %s" % input)
+
+    sm = SM(input)
+    rich(sm, output,noteSkin)
+
+
+def makeform(root, fields):
+    entries = []
+    for field in fields:
+        row = tk.Frame(root)
+        lab = tk.Label(row, width=15, text=field[0], anchor='w')
+        v = tk.StringVar(root, value=field[1])
+        ent = tk.Entry(row, textvariable=v)
+        row.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
+        lab.pack(side=tk.LEFT)
+        ent.pack(side=tk.RIGHT, expand=tk.YES, fill=tk.X)
+        entries.append((field, ent))
+    return entries
+
+
+if __name__ == "__main__":
+    # Tk().withdraw()
+    #	if len(sys.argv) <= 1:
+    #		usage()
+
+    root = tk.Tk()
+    ents = makeform(root, fields)
+    root.bind('<Return>', (lambda event, e=ents: fetch(e)))
+    b1 = tk.Button(root, text='Run', command=(lambda e=ents: fetch(e)))
+    b1.pack(side=tk.LEFT, padx=5, pady=5)
+    b2 = tk.Button(root, text='Quit', command=root.quit)
+    b2.pack(side=tk.LEFT, padx=5, pady=5)
+    root.mainloop()
+
+
 #	if len(sys.argv) == 2:
 #		if input.lower().endswith(".sm"):
 #			output = input[:-3] + "-couples" + input[-3:]
@@ -239,14 +292,5 @@ if __name__ == "__main__":
 #	if not os.path.exists(input):
 #		peace("Error:  Input file %s does not exist!" % input)
 
-    try:
-        sm_raw = open(input, "rb").read()
-    except:
-        peace("Error:  Cannot open %s" % input)
-
-    sm = SM(input)
-    rich(sm, output)
     # open("asdf.txt", "wb").write(sm.barf("\r\n", 0))
     # print sm.barf("\r\n", 0)
-
-			

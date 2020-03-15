@@ -51,11 +51,10 @@ Current usage:
 00000000
 ```
 - make sure that the chart ends with a semicolon
-- set your offset in `rich.py` file (in your offset is -0.030 enter 0.030)
-```
-globalOfset = 0.030
-```
+- ~~set your offset in `rich.py` file (in your offset is -0.030 enter 0.030)~~
+
 - run the `rich.py`, it requires python 2 and some dependencies or something.
+- set your offset and noteskin for the third player
 
 # TODO
 - Songs with variable BPM are not supported

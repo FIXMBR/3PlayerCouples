@@ -95,8 +95,7 @@ class SM:
 			notes.append(Notes(n))
 		self.notes = notes
 
-	def barf(self, LF="\r\n", mc=1):
-		noteSkin = "cybercouples"
+	def barf(self, LF="\r\n", mc=1, noteSkin="cybercouples"):
 		plist = ["TITLE", "SUBTITLE", "ARTIST", "TITLETRANSLIT", "SUBTITLETRANSLIT", "ARTISTTRANSLIT", "GENRE", "CREDIT", "BANNER", "BACKGROUND", "LYRICSPATH", "CDTITLE", "MUSIC", "OFFSET", "SAMPLESTART", "SAMPLELENGTH", "SELECTABLE", "DISPLAYBPM", "BPMS", "STOPS","ATTACKS", "FGCHANGES", "BGCHANGES", "BGCHANGES2", "KEYSOUNDS"]
 		pinvis = set(["SAMPLESTART", "SAMPLELENGTH", "SELECTABLE", "DISPLAYBPM", "BGCHANGES2"])
 		pleft = set([k for k,v in self.params])
