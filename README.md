@@ -50,11 +50,11 @@ Current usage:
 00000000
 ```
 - make sure that the chart ends with a semicolon
-- set your offset in rich.py file (in your offset is -0.030 enter 0.030)
+- set your offset in `rich.py` file (in your offset is -0.030 enter 0.030)
 ```
 globalOfset = 0.030
 ```
-- run the script, it requires python 2 and some dependencies or something.
+- run the `rich.py`, it requires python 2 and some dependencies or something.
 
 # TODO
 - Song with variable BPM is not supported
