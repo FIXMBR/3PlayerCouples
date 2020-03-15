@@ -4,9 +4,7 @@ import Tkinter as tk
 from Tkinter import Tk
 import sys
 import os
-global noteSkin
 noteSkin = "cybercouples"
-global globalOffset
 globalOffset = -0.030
 
 
