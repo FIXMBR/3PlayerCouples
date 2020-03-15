@@ -3,6 +3,7 @@ Original script by SpootyBiscuit
 
 Current usage:
 
+- copy cybercouples to your noteskin folder (or you can change 3rd player noteskin in `sm.py`)
 - create couples chart
 - create doubles chart (for the third player)
 - in your .sm file find and copy notes from your 3rd player chart
