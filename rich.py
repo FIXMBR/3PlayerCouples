@@ -215,7 +215,7 @@ def rich(sm, output):
 
 
 if __name__ == "__main__":
-    Tk().withdraw()
+    #Tk().withdraw()
 #	if len(sys.argv) <= 1:
 #		usage()
     input = askopenfilename(filetypes=[("sm files", "*.sm")])
