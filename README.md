@@ -57,7 +57,7 @@ globalOfset = 0.030
 - run the `rich.py`, it requires python 2 and some dependencies or something.
 
 # TODO
-- Song with variable BPM is not supported
+- Songs with variable BPM are not supported
 - Make the chart automatically  generate from 1 couples chart and 1 doubles chart (instead of relying on the user to copy it)
 - Convert it to Python 3
 - a lot more
