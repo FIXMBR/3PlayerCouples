@@ -5,7 +5,7 @@ from tkinter import Tk
 import sys
 import os
 import copy
-noteSkin = "cybercouples"
+noteSkin = "couplesp3"
 globalOffset = -0.030
 
 
@@ -254,7 +254,7 @@ def rich(sm, output, noteskin):
     print('Conversion Done!')
 
 
-fields = ['offset', '-0.030'], ['noteskin', 'cybercouples']
+fields = ['offset', '-0.030'], ['noteskin', 'couplesp3']
 
 
 def fetch(entries):
