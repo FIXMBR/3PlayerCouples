@@ -60,4 +60,4 @@ Current usage:
 - Songs with variable BPM are not supported
 - Make the chart automatically  generate from 1 couples chart and 1 doubles chart (instead of relying on the user to copy it)
 - Convert it to Python 3
-- a lot more
+- a lot more...
