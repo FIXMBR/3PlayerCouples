@@ -10,10 +10,10 @@ Current usage:
 5. enter your globaloffset and set the noteskin for the third player and run
 
 # TODO
-- Songs with variable BPM are not supported
+- ~~Songs with variable BPM are not supported~~ variable BPMs work now!
 - ~~Make the chart automatically  generate from 1 couples chart and 1 doubles chart (instead of relying on the user to copy it)~~
 - ~~Convert it to Python 3~~ Done!
-- There is to little offset for p3 when there are no p2 notes 
+- There is too little offset for p3 when there are no p2 notes 
 - a lot more...
 
 # Extra stuff
