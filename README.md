@@ -3,61 +3,21 @@ Original script by SpootyBiscuit
 
 Current usage:
 
-- copy cybercouples to your noteskin folder (or you can change 3rd player noteskin in `sm.py`)
-- create couples chart
-- create doubles chart (for the third player)
-- ~~in your .sm file find and copy notes from your 3rd player chart
-```
-//--------------- dance-double - 3rdplayer ----------------
-#NOTES:
-     dance-double:
-     3rdplayer:
-     Beginner:
-     1:
-     0,0,0,0,0:
-00000000        <----- COPY FROM HERE
-00000000
-00000000
-00000000
-,
-00000000
-.
-.
-.
-00200020
-00000000
-00300030
-00000000
-;               <----- TIL END OF THE CHART
-```
-- now find the end of your couples chart
-```
-00200020
-00000000
-00300030
-00000000
-;
-```
-- replace the semicolon with `&` and paste your chart after it
-```
-00200020
-00000000
-00300030
-00000000
-&
-00000000
-00000000
-00002002
-00000000
-```
-- make sure that the chart ends with a semicolon~~
-- ~~set your offset in `rich.py` file (in your offset is -0.030 enter 0.030)~~
-
-- run the `rich.py`, it requires python 3
-- set your offset and noteskin for the third player
+1. copy cybercouples to your noteskin folder (or you can change 3rd player noteskin in `sm.py`)
+2. create couples (routine) chart preferably in arrowvortex
+3. create doubles chart (for the third player)
+4. run the `rich.py`, it requires python 3
+5. enter your globaloffset and set the noteskin for the third player and run
 
 # TODO
 - Songs with variable BPM are not supported
 - ~~Make the chart automatically  generate from 1 couples chart and 1 doubles chart (instead of relying on the user to copy it)~~
 - ~~Convert it to Python 3~~ Done!
+- There is to little offset for p3 when there are no p2 notes 
 - a lot more...
+
+# Extra stuff
+- in `lua` folder, you can find pad change indicators with 3 player support. Originally made by WinDEU
+  - Copy it to your song folder 
+  - Add `#FGCHANGES:0.000=lua=1.000=0=0=1;` to your .sm file
+  - To make managing these easier [here](https://docs.google.com/spreadsheets/d/1keiLYWV12BUKy3XMYToRJ262_lQhTySG4gbHvcclhBw/edit#gid=383139627) you can find a spreadsheet that automatically generates code for them
