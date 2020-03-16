@@ -25,21 +25,22 @@ class SM:
 			raise SMError("Cannot open \"%s\"" % sm_file)
 
 		# Convert to UNIX format
-		sm_raw = sm_raw.replace("\r\n", "\n")
-		sm_raw = sm_raw.replace("\r", "\n")
+		sm_raw = sm_raw.replace(b"\r\n", b"\n")
+		sm_raw = sm_raw.replace(b"\r", b"\n")
 
 		# Remove comments
 		while True:
-			i = sm_raw.find("//")
+			i = sm_raw.find(b"//")
 			if i == -1:
 				break
 
-			j = sm_raw.find("\n", i)
+			j = sm_raw.find(b"\n", i)
 			if j == -1:
 				sm_raw = sm_raw[:i]
 			else:
 				sm_raw = sm_raw[:i] + sm_raw[j:]
 
+		sm_raw = sm_raw.decode()
 		# Create params dictionary
 		params = Params()
 		i = 0
@@ -114,14 +115,14 @@ class SM:
 				item = pleft.pop()
 			if item == "BPMS":
 				s += "#%s:" % item
-				for i in xrange(len(self.bpms)):
+				for i in range(len(self.bpms)):
 					if i > 0: s += ","
 					(a,b) = self.bpms[i]
 					s += "%.3f=%.3f" % (a, b) + LF
 				s += ";" + LF
 			elif item == "STOPS": # merge with above
 				s += "#%s:" % item
-				for i in xrange(len(self.stops)):
+				for i in range(len(self.stops)):
 					if i > 0: s += ","
 					(a,b) = self.stops[i]
 					s += "%.3f=%.3f" % (a, b) + LF
@@ -134,7 +135,7 @@ class SM:
 
 		item = "ATTACKS"
 		s += "#%s:" % item
-		for i in xrange(len(self.attacks)):
+		for i in range(len(self.attacks)):
 			if i > 0: s += ":"
 			(a,b) = self.attacks[i]
 			s += "TIME=%.3f:LEN=%.3f:MODS=" % (a, b)+noteSkin + LF
@@ -163,7 +164,7 @@ class SM:
 
 		ls = ls.split(",")
 		pairs = []
-		for i in xrange(len(ls)):
+		for i in range(len(ls)):
 			p = ls[i].split("=")
 			if len(p) != 2:
 				raise Exception("Bad list formatting")

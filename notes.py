@@ -33,7 +33,7 @@ class Notes:
 			measures = layer.split(",")
 			notes = []
 
-			for i in xrange(len(measures)):
+			for i in range(len(measures)):
 				m = measures[i]
 				if (len(m) % self.width) != 0:
 					raise Exception("Uneven number of notes in measure %d" % i)
@@ -41,8 +41,8 @@ class Notes:
 				p = len(m) / self.width
 				if p not in [4, 8, 12, 16, 24, 32, 48, 64, 192]:
 					raise Exception("Nonstandard note division (%d)" % p)
-
-				for j in xrange(p):
+				p=int(p)
+				for j in range(p):
 					n = m[self.width*j:self.width*j+self.width]
 					if n != "0" * self.width:
 						notes.append((round(4*i + 4*j/float(p), 3), n))
@@ -62,7 +62,7 @@ class Notes:
 		s += "     %s:" % (",".join(["%0.3f" % g for g in self.groove])) + LF
 
 		F = [48, 24, 16, 12, 8, 6, 4, 3, 1]
-		for li in xrange(len(self.layers)):
+		for li in range(len(self.layers)):
 			if li > 0: s += "&" + LF
 
 			layer = self.layers[li]
@@ -85,7 +85,7 @@ class Notes:
 							break
 					measure.update([(x % 192, layer[j][1])])
 					j += 1
-				for k in xrange(0, 192, h):
+				for k in range(0, 192, h):
 					if k in measure:
 						s += measure[k] + LF
 					else:

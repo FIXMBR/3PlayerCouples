@@ -1,7 +1,7 @@
 from sm import *
-from tkFileDialog import askopenfilename, asksaveasfilename
-import Tkinter as tk
-from Tkinter import Tk
+from tkinter.filedialog import askopenfilename, asksaveasfilename
+import tkinter as tk
+from tkinter import Tk
 import sys
 import os
 noteSkin = "cybercouples"
@@ -9,18 +9,18 @@ globalOffset = -0.030
 
 
 def pause(str="<Press enter to peace out>"):
-    raw_input(str)
+    input(str)
 
 
 def peace(str):
-    print str
+    print(str)
     # pause()
     exit(0)
 
 
 def usage():
-    print "*** Usage: %s input.sm [output.sm] ***"
-    print "(If no argument is given, output will be input-couples.sm)"
+    print("*** Usage: %s input.sm [output.sm] ***")
+    print("(If no argument is given, output will be input-couples.sm)")
     # pause()
     exit(0)
 
@@ -45,7 +45,7 @@ def rich(sm, output,noteskin):
             notes.type = "dance-double"
             couples3.append(notes)
     if couples3 != []:
-        print "we doing some coll 3 player couples owo"
+        print("we doing some coll 3 player couples owo")
     else:
         if couples == []:
             peace(
@@ -63,9 +63,9 @@ def rich(sm, output,noteskin):
         blues = []
         yellows = []
 
-        print notes.layers[2]
-        print sm.bpms[0][1]
-        print sm.offset
+        print(notes.layers[2])
+        print(sm.bpms[0][1])
+        print(sm.offset)
         # We want to add a stop gimmick wherever there is a blue note in any routine chart
         for b, n in notes.layers[1]:
             new_stops.add(b)
@@ -78,11 +78,11 @@ def rich(sm, output,noteskin):
                 (b/(sm.bpms[0][1]/60) - sm.offset + noteSkinOffset - globalOffset, attackTime))   # TODO variable BPM
             yellows.append((b+2.0/48, n))
 
-        print new_attacks
+        print(new_attacks)
 
-        print reds
-        print blues
-        print yellows
+        print(reds)
+        print(blues)
+        print(yellows)
 
         combined = []
 
@@ -138,10 +138,10 @@ def rich(sm, output,noteskin):
 
     new_stops = [x for x in new_stops]
     new_stops.sort()
-    print new_stops
+    print(new_stops)
     new_attacks = [x for x in new_attacks]
     new_attacks.sort()
-    print new_attacks
+    print(new_attacks)
 
     bi = 1
     curbpm = bpms[0][1]
@@ -162,7 +162,7 @@ def rich(sm, output,noteskin):
 
         stops.update([(beat, -s), (nb, ns)])
 
-    stops = [x for x in stops.items()]
+    stops = [x for x in list(stops.items())]
     stops.sort()
 
     filteredStops = []
@@ -190,7 +190,7 @@ def rich(sm, output,noteskin):
 
         if lastWasWarp:
             if i[1] < 0:
-                print '2 warpy owowowo'
+                print('2 warpy owowowo')
                 removeNext = True
                 lastWasWarp = False
             else:
@@ -202,17 +202,17 @@ def rich(sm, output,noteskin):
             lastWasWarp = False
         # print i
 
-    print "STOOOPKI TUTAJ: "
-    print stops
+    print("STOOOPKI TUTAJ: ")
+    print(stops)
 
-    print "STOOOPKI2 TUTAJ: "
-    print filteredStops
+    print("STOOOPKI2 TUTAJ: ")
+    print(filteredStops)
 
     sm.stops = filteredStops
     sm.attacks = new_attacks
     sm.notes = couples
 
-    open(output, "wb").write(sm.barf("\r\n", 1,noteskin))
+    open(output, "wb").write(sm.barf("\r\n", 1,noteskin).encode())
 
 
 fields = ['offset','-0.030'], ['noteskin','cybercouples']
@@ -222,7 +222,7 @@ def fetch(entries):
     for entry in entries:
         field = entry[0]
         text = entry[1].get()
-        print('%s: "%s"' % (field, text))
+        print(('%s: "%s"' % (field, text)))
         if field[0]=='offset':
             global globalOffset
             globalOffset = float(entry[1].get())

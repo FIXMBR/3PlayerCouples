@@ -53,11 +53,11 @@ Current usage:
 - make sure that the chart ends with a semicolon
 - ~~set your offset in `rich.py` file (in your offset is -0.030 enter 0.030)~~
 
-- run the `rich.py`, it requires python 2 and some dependencies or something.
+- run the `rich.py`, it requires python 3
 - set your offset and noteskin for the third player
 
 # TODO
 - Songs with variable BPM are not supported
 - Make the chart automatically  generate from 1 couples chart and 1 doubles chart (instead of relying on the user to copy it)
-- Convert it to Python 3
+- ~~Convert it to Python 3~~ Done!
 - a lot more...
