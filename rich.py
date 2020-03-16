@@ -75,7 +75,7 @@ def rich(sm, output,noteskin):
             global globalOffset
             new_stops.add(b+1.0/48)
             new_attacks.add(
-                (b/(sm.bpms[0][1]/60) - sm.offset + noteSkinOffset - globalOffset, attackTime))
+                (b/(sm.bpms[0][1]/60) - sm.offset + noteSkinOffset - globalOffset, attackTime))   # TODO variable BPM
             yellows.append((b+2.0/48, n))
 
         print new_attacks
