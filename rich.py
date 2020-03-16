@@ -25,6 +25,20 @@ def usage():
     # pause()
     exit(0)
 
+def calcBPM(beat, bpms):
+    time = 0
+    currentBeat = 0
+    for i in range(len(bpms)):
+        if i+1 >= len(bpms):
+            time+=(beat-currentBeat)/(bpms[i][1]/60)
+            return time
+        else:
+            if beat > bpms[i+1][0]:
+                time+=(bpms[i+1][0]-currentBeat)/(bpms[i][1]/60)
+                currentBeat = bpms[i+1][0]
+            else:
+                time+=(beat-currentBeat)/(bpms[i][1]/60)
+                return time
 
 def rich(sm, output, noteskin):
     # KURNA OFFSET JAK JA GO NIE NAWIDZeKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
@@ -104,7 +118,7 @@ def rich(sm, output, noteskin):
             global globalOffset
             new_stops.add(b+1.0/48)
             new_attacks.add(
-                (b/(sm.bpms[0][1]/60) - sm.offset + noteSkinOffset - globalOffset, attackTime))   # TODO variable BPM
+                (calcBPM(b,sm.bpms) - sm.offset + noteSkinOffset - globalOffset, attackTime))   # TODO variable BPM
             yellows.append((b+2.0/48, n))
 
         # print(new_attacks)
