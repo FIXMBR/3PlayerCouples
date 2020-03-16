@@ -45,7 +45,7 @@ def rich(sm, output,noteskin):
             notes.type = "dance-double"
             couples3.append(notes)
     if couples3 != []:
-        print("we doing some coll 3 player couples owo")
+        print("3 player couples detected!")
     else:
         if couples == []:
             peace(
@@ -63,9 +63,9 @@ def rich(sm, output,noteskin):
         blues = []
         yellows = []
 
-        print(notes.layers[2])
-        print(sm.bpms[0][1])
-        print(sm.offset)
+        # print(notes.layers[2])
+        # print(sm.bpms[0][1])
+        # print(sm.offset)
         # We want to add a stop gimmick wherever there is a blue note in any routine chart
         for b, n in notes.layers[1]:
             new_stops.add(b)
@@ -78,11 +78,11 @@ def rich(sm, output,noteskin):
                 (b/(sm.bpms[0][1]/60) - sm.offset + noteSkinOffset - globalOffset, attackTime))   # TODO variable BPM
             yellows.append((b+2.0/48, n))
 
-        print(new_attacks)
+        # print(new_attacks)
 
-        print(reds)
-        print(blues)
-        print(yellows)
+        # print(reds)
+        # print(blues)
+        # print(yellows)
 
         combined = []
 
@@ -138,10 +138,10 @@ def rich(sm, output,noteskin):
 
     new_stops = [x for x in new_stops]
     new_stops.sort()
-    print(new_stops)
+    # print(new_stops)
     new_attacks = [x for x in new_attacks]
     new_attacks.sort()
-    print(new_attacks)
+    # print(new_attacks)
 
     bi = 1
     curbpm = bpms[0][1]
@@ -190,7 +190,6 @@ def rich(sm, output,noteskin):
 
         if lastWasWarp:
             if i[1] < 0:
-                print('2 warpy owowowo')
                 removeNext = True
                 lastWasWarp = False
             else:
@@ -202,11 +201,7 @@ def rich(sm, output,noteskin):
             lastWasWarp = False
         # print i
 
-    print("STOOOPKI TUTAJ: ")
-    print(stops)
 
-    print("STOOOPKI2 TUTAJ: ")
-    print(filteredStops)
 
     sm.stops = filteredStops
     sm.attacks = new_attacks
@@ -214,6 +209,7 @@ def rich(sm, output,noteskin):
 
     open(output, "wb").write(sm.barf("\r\n", 1,noteskin).encode())
 
+    print('Conversion Done!')
 
 fields = ['offset','-0.030'], ['noteskin','cybercouples']
 
