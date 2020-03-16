@@ -1,6 +1,8 @@
 # 3PlayerCouples
 Original script by SpootyBiscuit 
 
+[demo](https://youtu.be/gzuTTFQaElw)
+
 Current usage:
 
 1. copy couplesp3 to your noteskin folder (or you can change 3rd player noteskin in the UI)
