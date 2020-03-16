@@ -3,15 +3,21 @@ Original script by SpootyBiscuit
 
 Current usage:
 
-- copy cybercouples to your noteskin folder (or you can change 3rd player noteskin in `sm.py`)
-- create couples (routine) chart preferably in arrowvortex
-- create doubles chart (for the third player)
-
-- run the `rich.py`, it requires python 3
-- enter your globaloffset and set the noteskin for the third player
+1. copy cybercouples to your noteskin folder (or you can change 3rd player noteskin in `sm.py`)
+2. create couples (routine) chart preferably in arrowvortex
+3. create doubles chart (for the third player)
+4. run the `rich.py`, it requires python 3
+5. enter your globaloffset and set the noteskin for the third player and run
 
 # TODO
 - Songs with variable BPM are not supported
 - ~~Make the chart automatically  generate from 1 couples chart and 1 doubles chart (instead of relying on the user to copy it)~~
 - ~~Convert it to Python 3~~ Done!
+- There is to little offset for p3 when there are no p2 notes 
 - a lot more...
+
+# Extra stuff
+- in `lua` folder, you can find pad change indicators with 3 player support. Originally made by WinDEU
+  - Copy it to your song folder 
+  - Add `#FGCHANGES:0.000=lua=1.000=0=0=1;` to your .sm file
+  - To make managing these easier [here](https://docs.google.com/spreadsheets/d/1keiLYWV12BUKy3XMYToRJ262_lQhTySG4gbHvcclhBw/edit#gid=383139627) you can find a spreadsheet that automatically generates code for them
