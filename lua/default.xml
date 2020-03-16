@@ -41,9 +41,39 @@
 				padfgtweentime = 1;
 				arrowrot1 = 0;
 				arrowrot2 = 0;
+				diff = tonumber(GAMESTATE:GetCurrentSteps(PLAYER_1):GetDifficulty());
 				
 				curindicpattern = 1;
-				indicactivity = {
+
+				 -- {beat,'xyz'} --
+
+				-- NOVICE --
+				noviceindicactivity = {
+
+								};
+
+				 -- EASY --
+				easyindicactivity = {
+
+								};
+
+				-- MEDIUM --
+				mediumindicactivity = {
+
+								};
+
+				-- HARD --
+				hardindicactivity = {
+
+								};
+
+				-- EXPERT --
+				expertindicactivity = {
+
+								};
+
+				-- EDIT --
+				editindicactivity = {
 
 								};
 				
@@ -97,11 +127,55 @@
 		UpdateCommand="%function(self)
 		
 			--if GAMESTATE:IsCourseMode() then
+
+
+			-- Choosing and performing the correct list for chart's difficulty --
+
+			if diff == 0 then
 			
-				if curindicpattern <= table.getn(indicactivity) and GAMESTATE:GetSongBeat()>=indicactivity[curindicpattern][1] then
-					SwitchIndicator(indicactivity[curindicpattern][2],indicactivity[curindicpattern][3],indicactivity[curindicpattern][4]);
+				if curindicpattern <= table.getn(noviceindicactivity) and GAMESTATE:GetSongBeat()>=noviceindicactivity[curindicpattern][1] then
+					SwitchIndicator(noviceindicactivity[curindicpattern][2],noviceindicactivity[curindicpattern][3],noviceindicactivity[curindicpattern][4]);
 					curindicpattern = curindicpattern + 1;
 				end
+
+			elseif diff == 1 then
+			
+				if curindicpattern <= table.getn(easyindicactivity) and GAMESTATE:GetSongBeat()>=easyindicactivity[curindicpattern][1] then
+					SwitchIndicator(easyindicactivity[curindicpattern][2],easyindicactivity[curindicpattern][3],easyindicactivity[curindicpattern][4]);
+					curindicpattern = curindicpattern + 1;
+				end
+
+			elseif diff == 2 then
+			
+				if curindicpattern <= table.getn(mediumindicactivity) and GAMESTATE:GetSongBeat()>=mediumindicactivity[curindicpattern][1] then
+					SwitchIndicator(mediumindicactivity[curindicpattern][2],mediumindicactivity[curindicpattern][3],mediumindicactivity[curindicpattern][4]);
+					curindicpattern = curindicpattern + 1;
+				end
+
+			elseif diff == 3 then
+			
+				if curindicpattern <= table.getn(hardindicactivity) and GAMESTATE:GetSongBeat()>=hardindicactivity[curindicpattern][1] then
+					SwitchIndicator(hardindicactivity[curindicpattern][2],hardindicactivity[curindicpattern][3],hardindicactivity[curindicpattern][4]);
+					curindicpattern = curindicpattern + 1;
+				end
+
+			elseif diff == 4 then
+			
+				if curindicpattern <= table.getn(expertindicactivity) and GAMESTATE:GetSongBeat()>=expertindicactivity[curindicpattern][1] then
+					SwitchIndicator(expertindicactivity[curindicpattern][2],expertindicactivity[curindicpattern][3],expertindicactivity[curindicpattern][4]);
+					curindicpattern = curindicpattern + 1;
+				end
+
+			else
+
+				if curindicpattern <= table.getn(editindicactivity) and GAMESTATE:GetSongBeat()>=editindicactivity[curindicpattern][1] then
+					SwitchIndicator(editindicactivity[curindicpattern][2],editindicactivity[curindicpattern][3],editindicactivity[curindicpattern][4]);
+					curindicpattern = curindicpattern + 1;
+				end
+
+			end
+
+			-- End choosing difficulty --
 				
 				
 				
