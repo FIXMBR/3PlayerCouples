@@ -36,25 +36,46 @@ def rich(sm, output, noteskin):
     bpms = sm.bpms
     stops = dict(sm.stops)
 
-    couples = []
-    couples3 = []
-    thirdPlayerNotes = []
+    couples = [[], [], [], [], [], []]
+    couples2 = []
+
+    thirdPlayerNotes = [[], [], [], [], [], []]
 
     for notes in sm.notes:
         if notes.type == "dance-double":
-            thirdPlayerNotes = notes
+            if notes.difficulty == 'Beginner':
+                thirdPlayerNotes[0] = notes
+            elif notes.difficulty == 'Easy':
+                thirdPlayerNotes[1] = notes
+            elif notes.difficulty == 'Medium':
+                thirdPlayerNotes[2] = notes
+            elif notes.difficulty == 'Hard':
+                thirdPlayerNotes[3] = notes
+            elif notes.difficulty == 'Challenge':
+                thirdPlayerNotes[4] = notes
+            else:
+                thirdPlayerNotes[5] = notes
         if notes.type == "dance-routine" and len(notes.layers) == 2:
             notes.type = "dance-double"
-            couples.append(notes)
-        if notes.type == "dance-routine" and len(notes.layers) == 3:
-            notes.type = "dance-double"
-            couples3.append(notes)
-    if couples3 != []:
-        print("3 player couples detected!")
-        couples = copy.deepcopy(couples3)
-    elif thirdPlayerNotes != []:
+            if notes.difficulty == 'Beginner':
+                couples[0] = notes
+            elif notes.difficulty == 'Easy':
+                couples[1] = notes
+            elif notes.difficulty == 'Medium':
+                couples[2] = notes
+            elif notes.difficulty == 'Hard':
+                couples[3] = notes
+            elif notes.difficulty == 'Challenge':
+                couples[4] = notes
+            else:
+                couples[5] = notes
+    if thirdPlayerNotes != []:
         print("combining doubles chart with routine")
-        couples[0].layers.append(thirdPlayerNotes.notes)
+
+        for i in range(len(couples)):
+            if(couples[i]!=[]):
+                couples[i].layers.append(thirdPlayerNotes[i].notes)
+                couples2.append(couples[i])
     else:
         if couples == []:
             peace(
@@ -62,7 +83,7 @@ def rich(sm, output, noteskin):
 
     # TODO: I could add a check for 64ths/192nds and print a warning...
 
-    
+    couples = copy.deepcopy(couples2)
 
     new_stops = set()
     new_attacks = set()
