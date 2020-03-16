@@ -3,7 +3,10 @@ Original script by SpootyBiscuit
 
 [demo](https://youtu.be/gzuTTFQaElw)
 
-Current usage:
+# Warning
+There is an issue with this method. It depends on your globalOffset, so anyone who wants to play your chart would have to convert it themselves
+
+# Current usage:
 
 1. copy couplesp3 to your noteskin folder (or you can change 3rd player noteskin in the UI)
 2. create couples (routine) chart preferably in arrowvortex
