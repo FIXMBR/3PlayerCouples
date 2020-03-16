@@ -6,7 +6,7 @@ Current usage:
 - copy cybercouples to your noteskin folder (or you can change 3rd player noteskin in `sm.py`)
 - create couples chart
 - create doubles chart (for the third player)
-- in your .sm file find and copy notes from your 3rd player chart
+- ~~in your .sm file find and copy notes from your 3rd player chart
 ```
 //--------------- dance-double - 3rdplayer ----------------
 #NOTES:
@@ -50,7 +50,7 @@ Current usage:
 00002002
 00000000
 ```
-- make sure that the chart ends with a semicolon
+- make sure that the chart ends with a semicolon~~
 - ~~set your offset in `rich.py` file (in your offset is -0.030 enter 0.030)~~
 
 - run the `rich.py`, it requires python 3
@@ -58,6 +58,6 @@ Current usage:
 
 # TODO
 - Songs with variable BPM are not supported
-- Make the chart automatically  generate from 1 couples chart and 1 doubles chart (instead of relying on the user to copy it)
+- ~~Make the chart automatically  generate from 1 couples chart and 1 doubles chart (instead of relying on the user to copy it)~~
 - ~~Convert it to Python 3~~ Done!
 - a lot more...

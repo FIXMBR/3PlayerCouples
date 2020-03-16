@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import Tk
 import sys
 import os
+import copy
 noteSkin = "cybercouples"
 globalOffset = -0.030
 
@@ -25,7 +26,7 @@ def usage():
     exit(0)
 
 
-def rich(sm, output,noteskin):
+def rich(sm, output, noteskin):
     # KURNA OFFSET JAK JA GO NIE NAWIDZeKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
     noteSkinOffset = 0.001
     thirdPlayerOffset = 0.003
@@ -37,7 +38,11 @@ def rich(sm, output,noteskin):
 
     couples = []
     couples3 = []
+    thirdPlayerNotes = []
+
     for notes in sm.notes:
+        if notes.type == "dance-double":
+            thirdPlayerNotes = notes
         if notes.type == "dance-routine" and len(notes.layers) == 2:
             notes.type = "dance-double"
             couples.append(notes)
@@ -46,6 +51,10 @@ def rich(sm, output,noteskin):
             couples3.append(notes)
     if couples3 != []:
         print("3 player couples detected!")
+        couples = copy.deepcopy(couples3)
+    elif thirdPlayerNotes != []:
+        print("combining doubles chart with routine")
+        couples[0].layers.append(thirdPlayerNotes.notes)
     else:
         if couples == []:
             peace(
@@ -53,8 +62,7 @@ def rich(sm, output,noteskin):
 
     # TODO: I could add a check for 64ths/192nds and print a warning...
 
-    import copy
-    couples = copy.deepcopy(couples3)
+    
 
     new_stops = set()
     new_attacks = set()
@@ -201,17 +209,15 @@ def rich(sm, output,noteskin):
             lastWasWarp = False
         # print i
 
-
-
     sm.stops = filteredStops
     sm.attacks = new_attacks
     sm.notes = couples
-
-    open(output, "wb").write(sm.barf("\r\n", 1,noteskin).encode())
+    open(output, "wb").write(sm.barf("\r\n", 1, noteskin).encode())
 
     print('Conversion Done!')
 
-fields = ['offset','-0.030'], ['noteskin','cybercouples']
+
+fields = ['offset', '-0.030'], ['noteskin', 'cybercouples']
 
 
 def fetch(entries):
@@ -219,10 +225,10 @@ def fetch(entries):
         field = entry[0]
         text = entry[1].get()
         print(('%s: "%s"' % (field, text)))
-        if field[0]=='offset':
+        if field[0] == 'offset':
             global globalOffset
             globalOffset = float(entry[1].get())
-        elif field[0]=='noteskin':
+        elif field[0] == 'noteskin':
             global noteSkin
             noteSkin = entry[1].get()
 
@@ -236,7 +242,7 @@ def fetch(entries):
         peace("Error:  Cannot open %s" % input)
 
     sm = SM(input)
-    rich(sm, output,noteSkin)
+    rich(sm, output, noteSkin)
 
 
 def makeform(root, fields):
