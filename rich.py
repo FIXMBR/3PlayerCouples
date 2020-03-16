@@ -44,7 +44,7 @@ def rich(sm, output, noteskin):
     # KURNA OFFSET JAK JA GO NIE NAWIDZeKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
     noteSkinOffset = 0.001
     thirdPlayerOffset = 0.003
-    attackTime = 0.010
+    attackTime = 0.005
     # KURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
 
     bpms = sm.bpms
@@ -101,6 +101,7 @@ def rich(sm, output, noteskin):
 
     new_stops = set()
     new_attacks = set()
+
     for notes in couples:
         reds = notes.layers[0]
         blues = []
@@ -116,9 +117,10 @@ def rich(sm, output, noteskin):
         for b, n in notes.layers[2]:
             # TODO changing BPMs
             global globalOffset
+            new_stops.add(b)
             new_stops.add(b+1.0/48)
             new_attacks.add(
-                (calcBPM(b,sm.bpms) - sm.offset + noteSkinOffset - globalOffset, attackTime))   # TODO variable BPM
+                (calcBPM(b,sm.bpms) - sm.offset + noteSkinOffset - globalOffset, attackTime))  
             yellows.append((b+2.0/48, n))
 
         # print(new_attacks)

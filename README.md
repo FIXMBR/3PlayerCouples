@@ -13,8 +13,8 @@ Current usage:
 - ~~Songs with variable BPM are not supported~~ variable BPMs work now!
 - ~~Make the chart automatically  generate from 1 couples chart and 1 doubles chart (instead of relying on the user to copy it)~~
 - ~~Convert it to Python 3~~ Done!
-- There is too little offset for p3 when there are no p2 notes 
-- a lot more...
+- ~~There is too little offset for p3 when there are no p2 notes ~~ Done too!
+- ~~a lot more...~~ Maybe 4 player support in the future
 
 # Extra stuff
 - you can add multiple difficulties, by creating routine and doubles charts with the same difficulty 
