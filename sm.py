@@ -150,6 +150,8 @@ class SM:
                 s += "#%s:%.3f;" % (item, self.offset) + LF
             elif item == "GLOBALOFFSET":
                 s += "#%s:%.3f;" % (item, globalOffset) + LF
+            elif item == "ATTACKS":
+                pass
             else:
                 for value in self.params[item]:
                     s += "#%s:%s;" % (item, value) + LF
@@ -197,12 +199,12 @@ class SM:
 
     @staticmethod
     def parse_attacks_list(ls):
-        # ls = "".join(ls.split("\n"))
-        # ls = "".join(ls.split())
+        ls = "".join(ls.split("\n"))
+        ls = "".join(ls.split())
         if ls == "":
             return []
 
-        ls = ls.split("\n")
+        ls = ls.split("TIME")
         triples = []
         for i in range(len(ls)):
             if ls[i] != '':
@@ -210,7 +212,7 @@ class SM:
                     ls[i] = ls[i][1:]
 
                 p = re.split('; |, |\:|=', ls[i])
-                if len(p) != 6:
+                if len(p) != 6 and len(p) !=7:
                     raise Exception("Bad list formatting")
                 triples.append((p[1], p[3], p[5]))
         return triples
