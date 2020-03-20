@@ -31,7 +31,7 @@ class XML:
         i = xml_raw.find("<ActorFrame", i)
         j = xml_raw.find("><children>", i+1)
 
-        self.xml_contents.append(xml_raw[i:i+12])
+        self.xml_contents.append(xml_raw[:i+11])
         self.xml_contents.append(xml_raw[j:])
         
 
