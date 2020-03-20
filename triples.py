@@ -1,4 +1,5 @@
 from sm import *
+from sm_xml import XML
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 import tkinter as tk
 from tkinter import Tk
@@ -6,7 +7,6 @@ import sys
 import os
 import copy
 noteSkin = "couplesp3"
-globalOffset = -0.030
 
 
 def pause(str="<Press enter to peace out>"):
@@ -42,7 +42,9 @@ def calcBPM(beat, bpms):
                 return time
 
 
-def rich(sm, output, noteskin):
+
+
+def fancyWithXML(sm, output, noteskin, xml, xmlfile):
     # KURNA OFFSET JAK JA GO NIE NAWIDZeKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
     noteSkinOffset = 0.001
     thirdPlayerOffset = 0.003
@@ -118,11 +120,11 @@ def rich(sm, output, noteskin):
             blues.append((b+1.0/48, n))
         for b, n in notes.layers[2]:
             # TODO changing BPMs
-            global globalOffset
             new_stops.add(b)
             new_stops.add(b+1.0/48)
+            print(calcBPM(b, sm.bpms))
             new_attacks.add(
-                (calcBPM(b, sm.bpms) - sm.offset + noteSkinOffset - globalOffset, attackTime, noteskin))
+                (calcBPM(b, sm.bpms) + noteSkinOffset - sm.offset , attackTime, noteskin))
             yellows.append((b+2.0/48, n))
 
         # print(new_attacks)
@@ -249,14 +251,15 @@ def rich(sm, output, noteskin):
         # print i
 
     sm.stops = filteredStops
-    sm.attacks = new_attacks
+    xml.attacks = new_attacks
     sm.notes = couples
-    open(output, "wb").write(sm.barf("\r\n", 1, noteskin, globalOffset).encode())
+    open(output, "wb").write(sm.barf("\r\n", 1, noteskin).encode())
+    open(xmlfile, "wb").write(xml.barf("\r\n", 1, noteskin).encode())
 
     print('Conversion Done!')
 
 
-fields = ['offset', '-0.030'], ['noteskin', 'couplesp3']
+fields =[ ['noteskin', 'couplesp3']]
 
 
 def fetch(entries):
@@ -264,14 +267,13 @@ def fetch(entries):
         field = entry[0]
         text = entry[1].get()
         print(('%s: "%s"' % (field, text)))
-        if field[0] == 'offset':
-            global globalOffset
-            globalOffset = float(entry[1].get())
-        elif field[0] == 'noteskin':
+        if field[0] == 'noteskin':
             global noteSkin
             noteSkin = entry[1].get()
 
     input = askopenfilename(filetypes=[("sm files", "*.sm")])
+    xmlfile = askopenfilename(
+        filetypes=[("xml files", "*.xml")], initialfile=[('default.xml')])
     output = asksaveasfilename(
         filetypes=[("sm files", "*.sm")], initialfile=[('output.sm')])
 
@@ -281,7 +283,9 @@ def fetch(entries):
         peace("Error:  Cannot open %s" % input)
 
     sm = SM(input)
-    rich(sm, output, noteSkin)
+    xml = XML(xmlfile)
+    fancyWithXML(sm, output, noteSkin, xml, xmlfile)
+    # rich(sm, output, noteSkin)
 
 
 def makeform(root, fields):

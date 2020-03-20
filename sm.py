@@ -107,9 +107,9 @@ class SM:
             notes.append(Notes(n))
         self.notes = notes
 
-    def barf(self, LF="\r\n", mc=1, noteSkin="cybercouples", globalOffset=0.000):
+    def barf(self, LF="\r\n", mc=1, noteSkin="cybercouples"):
         plist = ["TITLE", "SUBTITLE", "ARTIST", "TITLETRANSLIT", "SUBTITLETRANSLIT", "ARTISTTRANSLIT", "GENRE", "CREDIT", "BANNER", "BACKGROUND", "LYRICSPATH", "CDTITLE",
-                 "MUSIC", "OFFSET", "GLOBALOFFSET", "SAMPLESTART", "SAMPLELENGTH", "SELECTABLE", "DISPLAYBPM", "BPMS", "STOPS", "ATTACKS", "FGCHANGES", "BGCHANGES", "BGCHANGES2", "KEYSOUNDS"]
+                 "MUSIC", "OFFSET", "SAMPLESTART", "SAMPLELENGTH", "SELECTABLE", "DISPLAYBPM", "BPMS", "STOPS", "ATTACKS", "FGCHANGES", "BGCHANGES", "BGCHANGES2", "KEYSOUNDS"]
         pinvis = set(["SAMPLESTART", "SAMPLELENGTH",
                       "SELECTABLE", "DISPLAYBPM", "BGCHANGES2"])
         pleft = set([k for k, v in self.params])
@@ -148,8 +148,6 @@ class SM:
                 s += ";" + LF
             elif item == "OFFSET":
                 s += "#%s:%.3f;" % (item, self.offset) + LF
-            elif item == "GLOBALOFFSET":
-                s += "#%s:%.3f;" % (item, globalOffset) + LF
             elif item == "ATTACKS":
                 pass
             else:
@@ -211,7 +209,7 @@ class SM:
                 if ls[i][0] == ":":
                     ls[i] = ls[i][1:]
 
-                p = re.split('; |, |\:|=', ls[i])
+                p = re.split(r'; |, |\:|=', ls[i])
                 if len(p) != 6 and len(p) !=7:
                     raise Exception("Bad list formatting")
                 triples.append((p[1], p[3], p[5]))

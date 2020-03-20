@@ -4,7 +4,8 @@ Original script by SpootyBiscuit
 [demo](https://youtu.be/gzuTTFQaElw)
 
 # Warning
-There is an issue with this method. It depends on your globalOffset, so anyone who wants to play your chart would have to convert it themselves
+~~There is an issue with this method. It depends on your globalOffset, so anyone who wants to play your chart would have to convert it themselves~~
+THIS NOW WORKS REGARDLES OF GLOBALOFFSET ASDFGJASDLKJSAD
 
 # Current usage:
 
@@ -15,7 +16,7 @@ There is an issue with this method. It depends on your globalOffset, so anyone w
 3. create doubles chart (for the third player) with the same difficulty as routine
   - backup your sm file before conversion, any file specified as an output will be overwritten, and your original - "source" charts will be lost
 4. run `triples.exe` or`rich.py` - it requires python 3
-5. enter your globaloffset and set the noteskin for the third player and run
+5. ~~enter your globaloffset and~~ set the noteskin for the third player and run
 6. make sure the output file is the only .sm file in song folder, also you probably need to restart nITG
 
 # TODO
