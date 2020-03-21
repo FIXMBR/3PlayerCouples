@@ -7,6 +7,7 @@ import sys
 import os
 import copy
 noteSkin = "couplesp3"
+noteSkin2 = "couplesp4"
 
 
 def pause(str="<Press enter to peace out>"):
@@ -42,13 +43,11 @@ def calcBPM(beat, bpms):
                 return time
 
 
-
-
-def fancyWithXML(sm, output, noteskin, xml, xmlfile):
+def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
     # KURNA OFFSET JAK JA GO NIE NAWIDZeKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
     noteSkinOffset = 0.001
     thirdPlayerOffset = 0.003
-    attackTime = 0.005
+    attackTime = 0.003
     # KURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
 
     bpms = sm.bpms
@@ -56,60 +55,76 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile):
 
     couples = [[], [], [], [], [], []]
     couples2 = []
+    fourPlayerCouples = {}
 
     thirdPlayerNotes = [[], [], [], [], [], []]
+    if(fourPlayers == 0):
+        for notes in sm.notes:
+            if notes.type == "dance-double":
+                if notes.difficulty == 'Beginner':
+                    thirdPlayerNotes[0] = notes
+                elif notes.difficulty == 'Easy':
+                    thirdPlayerNotes[1] = notes
+                elif notes.difficulty == 'Medium':
+                    thirdPlayerNotes[2] = notes
+                elif notes.difficulty == 'Hard':
+                    thirdPlayerNotes[3] = notes
+                elif notes.difficulty == 'Challenge':
+                    thirdPlayerNotes[4] = notes
+                else:
+                    thirdPlayerNotes[5] = notes
+            if notes.type == "dance-routine" and len(notes.layers) == 2:
+                notes.type = "dance-double"
+                if notes.difficulty == 'Beginner':
+                    couples[0] = notes
+                elif notes.difficulty == 'Easy':
+                    couples[1] = notes
+                elif notes.difficulty == 'Medium':
+                    couples[2] = notes
+                elif notes.difficulty == 'Hard':
+                    couples[3] = notes
+                elif notes.difficulty == 'Challenge':
+                    couples[4] = notes
+                else:
+                    couples[5] = notes
+        if thirdPlayerNotes != []:
+            print("combining doubles chart with routine")
 
-    for notes in sm.notes:
-        if notes.type == "dance-double":
-            if notes.difficulty == 'Beginner':
-                thirdPlayerNotes[0] = notes
-            elif notes.difficulty == 'Easy':
-                thirdPlayerNotes[1] = notes
-            elif notes.difficulty == 'Medium':
-                thirdPlayerNotes[2] = notes
-            elif notes.difficulty == 'Hard':
-                thirdPlayerNotes[3] = notes
-            elif notes.difficulty == 'Challenge':
-                thirdPlayerNotes[4] = notes
-            else:
-                thirdPlayerNotes[5] = notes
-        if notes.type == "dance-routine" and len(notes.layers) == 2:
-            notes.type = "dance-double"
-            if notes.difficulty == 'Beginner':
-                couples[0] = notes
-            elif notes.difficulty == 'Easy':
-                couples[1] = notes
-            elif notes.difficulty == 'Medium':
-                couples[2] = notes
-            elif notes.difficulty == 'Hard':
-                couples[3] = notes
-            elif notes.difficulty == 'Challenge':
-                couples[4] = notes
-            else:
-                couples[5] = notes
-    if thirdPlayerNotes != []:
-        print("combining doubles chart with routine")
-
-        for i in range(len(couples)):
-            if(couples[i] != []):
-                couples[i].layers.append(thirdPlayerNotes[i].notes)
-                couples2.append(couples[i])
+            for i in range(len(couples)):
+                if(couples[i] != []):
+                    couples[i].layers.append(thirdPlayerNotes[i].notes)
+                    couples2.append(couples[i])
+        else:
+            if couples == []:
+                peace(
+                    "Error: There were no valid dance-routine charts found in the input file!")
+        couples = copy.deepcopy(couples2)
     else:
-        if couples == []:
-            peace(
-                "Error: There were no valid dance-routine charts found in the input file!")
-
-    # TODO: I could add a check for 64ths/192nds and print a warning...
-
-    couples = copy.deepcopy(couples2)
+        for notes in sm.notes:
+            if notes.type == "dance-routine" and len(notes.layers) == 2:
+                notes.type = "dance-double"
+                if notes.name in fourPlayerCouples:
+                    fourPlayerCouples[notes.name].layers.append(
+                        notes.layers[0])
+                    fourPlayerCouples[notes.name].layers.append(
+                        notes.layers[1])
+                else:
+                    fourPlayerCouples[notes.name] = notes
+        # couples = copy.deepcopy(fourPlayerCouples)
+        couples = []
+        for key, value in fourPlayerCouples.items():
+            couples.append(value)
 
     new_stops = set()
     new_attacks = set()
 
     for notes in couples:
+        # if(fourPlayers==1):
+        #     notes = couples[notes]
         reds = notes.layers[0]
         blues = []
         yellows = []
+        fourths = []
 
         # print(notes.layers[2])
         # print(sm.bpms[0][1])
@@ -122,10 +137,18 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile):
             # TODO changing BPMs
             new_stops.add(b)
             new_stops.add(b+1.0/48)
-            print(calcBPM(b, sm.bpms))
             new_attacks.add(
-                (calcBPM(b, sm.bpms) + noteSkinOffset - sm.offset , attackTime, noteskin))
+                (calcBPM(b, sm.bpms) + noteSkinOffset - sm.offset, attackTime, noteskin))
             yellows.append((b+2.0/48, n))
+        if(fourPlayers == 1):
+            for b, n in notes.layers[3]:
+                # TODO changing BPMs
+                new_stops.add(b)
+                new_stops.add(b+1.0/48)
+                new_stops.add(b+2.0/48)
+                new_attacks.add(
+                    (calcBPM(b+1.0/48, sm.bpms) + noteSkinOffset - thirdPlayerOffset - sm.offset, attackTime, noteskin2))
+                fourths.append((b+3.0/48, n))
 
         # print(new_attacks)
 
@@ -135,53 +158,7 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile):
 
         combined = []
 
-        yi = ri = bi = 0  # Combine the red and blue layers
-        while ri < len(reds) or bi < len(blues) or yi < len(yellows):
-            if ri < len(reds) and bi < len(blues) and yi < len(yellows):
-                if reds[ri][0] <= blues[bi][0]:
-                    if reds[ri][0] <= yellows[yi][0]:
-                        combined.append(reds[ri])
-                        ri += 1
-                    else:
-                        combined.append(yellows[yi])
-                        yi += 1
-                else:
-                    if blues[bi][0] <= yellows[yi][0]:
-                        combined.append(blues[bi])
-                        bi += 1
-                    else:
-                        combined.append(yellows[yi])
-                        yi += 1
-            elif ri < len(reds) and bi < len(blues):
-                if reds[ri][0] <= blues[bi][0]:
-                    combined.append(reds[ri])
-                    ri += 1
-                else:
-                    combined.append(blues[bi])
-                    bi += 1
-            elif yi < len(yellows) and bi < len(blues):
-                if yellows[yi][0] <= blues[bi][0]:
-                    combined.append(yellows[yi])
-                    yi += 1
-                else:
-                    combined.append(blues[bi])
-                    bi += 1
-            elif yi < len(yellows) and ri < len(reds):
-                if yellows[yi][0] <= reds[ri][0]:
-                    combined.append(yellows[yi])
-                    yi += 1
-                else:
-                    combined.append(reds[ri])
-                    ri += 1
-            elif ri < len(reds):
-                combined.append(reds[ri])
-                ri += 1
-            elif bi < len(blues):
-                combined.append(blues[bi])
-                bi += 1
-            else:
-                combined.append(yellows[yi])
-                yi += 1
+        combined = sorted(reds+blues+yellows+fourths, key=lambda l: l[0])
 
         notes.layers = [combined]
 
@@ -215,54 +192,84 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile):
     stops.sort()
 
     filteredStops = []
-    lastWasWarp = False
-    lastValue = 0.0
-    removeNext = False
-    doubleNext = False
-    for i in stops:
-        if removeNext:
 
-            removeNext = False
-            doubleNext = True
-        elif doubleNext:
-            doubleNext = False
-            filteredStops.append((i[0], (i[1]-lastValue)))
-        else:
-            if lastWasWarp:
-                if i[1] < 0:
-                    filteredStops.append((i[0], i[1]+thirdPlayerOffset))
-                    lastValue = i[1]+thirdPlayerOffset
+    if(fourPlayers == 0):
+        lastWasWarp = False
+        lastValue = 0.0
+        removeNext = False
+        doubleNext = False
+        for i in stops:
+            if removeNext:
+
+                removeNext = False
+                doubleNext = True
+            elif doubleNext:
+                doubleNext = False
+                filteredStops.append((i[0], (i[1]-lastValue)))
+            else:
+                if lastWasWarp:
+                    if i[1] < 0:
+                        filteredStops.append((i[0], i[1]+thirdPlayerOffset))
+                        lastValue = i[1]+thirdPlayerOffset
+                    else:
+                        filteredStops.append(i)
                 else:
                     filteredStops.append(i)
-            else:
-                filteredStops.append(i)
 
-        if lastWasWarp:
-            if i[1] < 0:
-                removeNext = True
-                lastWasWarp = False
+            if lastWasWarp:
+                if i[1] < 0:
+                    removeNext = True
+                    lastWasWarp = False
+                else:
+                    lastWasWarp = False
+
+            elif i[1] < 0:
+                lastWasWarp = True
             else:
                 lastWasWarp = False
+            # print i
+    else:
 
-        elif i[1] < 0:
-            lastWasWarp = True
-        else:
-            lastWasWarp = False
-        # print i
+        currentBeat = 0
+        for stop in stops:
+            if(stop[0] > currentBeat):
+                currentBeat = stop[0]
+                searchForWarps = []
+                lastStop = []
+                for stop in stops:
+                    if stop[0] >= currentBeat and stop[0] < currentBeat+0.063:
+                        if (stop[1] < 0):
+                            searchForWarps.append(stop)
+                        else:
+                            lastStop = stop
+                currentBeat = lastStop[0]
+                toCompensate = 0.0
+                i = False
+                for warp in searchForWarps:
+                    if i:
+                        filteredStops.append(
+                            (warp[0], warp[1]+thirdPlayerOffset))
+                        toCompensate += warp[1]+thirdPlayerOffset
+                    else:
+                        filteredStops.append((warp[0], warp[1]))
+                        toCompensate += warp[1]
+                    i = True
+                filteredStops.append((lastStop[0], -toCompensate))
 
     sm.stops = filteredStops
     xml.attacks = new_attacks
     sm.notes = couples
+
     open(output, "wb").write(sm.barf("\r\n", 1, noteskin).encode())
     open(xmlfile, "wb").write(xml.barf("\r\n", 1, noteskin).encode())
 
     print('Conversion Done!')
 
 
-fields =[ ['noteskin', 'couplesp3']]
+fields = [['noteskin', 'couplesp3'], ['noteskin2', 'couplesp4']]
 
 
-def fetch(entries):
+def fetch(entries, fourPlayers):
     for entry in entries:
         field = entry[0]
         text = entry[1].get()
@@ -270,6 +277,9 @@ def fetch(entries):
         if field[0] == 'noteskin':
             global noteSkin
             noteSkin = entry[1].get()
+        if field[0] == 'noteskin2':
+            global noteSkin2
+            noteSkin2 = entry[1].get()
 
     input = askopenfilename(filetypes=[("sm files", "*.sm")])
     xmlfile = askopenfilename(
@@ -284,7 +294,8 @@ def fetch(entries):
 
     sm = SM(input)
     xml = XML(xmlfile)
-    fancyWithXML(sm, output, noteSkin, xml, xmlfile)
+    fancyWithXML(sm, output, noteSkin, xml, xmlfile,
+                 fourPlayers.get(), noteSkin2)
     # rich(sm, output, noteSkin)
 
 
@@ -299,6 +310,7 @@ def makeform(root, fields):
         lab.pack(side=tk.LEFT)
         ent.pack(side=tk.RIGHT, expand=tk.YES, fill=tk.X)
         entries.append((field, ent))
+
     return entries
 
 
@@ -310,7 +322,12 @@ if __name__ == "__main__":
     root = tk.Tk()
     ents = makeform(root, fields)
     root.bind('<Return>', (lambda event, e=ents: fetch(e)))
-    b1 = tk.Button(root, text='Run', command=(lambda e=ents: fetch(e)))
+    fourPlayers = tk.IntVar()
+    checkBoxer = tk.Checkbutton(
+        root, text="4players", variable=fourPlayers, onvalue=1, offvalue=0)
+    checkBoxer.pack(side=tk.LEFT, padx=5, pady=5)
+    b1 = tk.Button(root, text='Run', command=(
+        lambda e=ents, a=fourPlayers: fetch(e, a)))
     b1.pack(side=tk.LEFT, padx=5, pady=5)
     b2 = tk.Button(root, text='Quit', command=root.quit)
     b2.pack(side=tk.LEFT, padx=5, pady=5)
