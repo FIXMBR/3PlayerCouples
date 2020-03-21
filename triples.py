@@ -6,6 +6,7 @@ from tkinter import Tk
 import sys
 import os
 import copy
+import math  
 noteSkin = "couplesp3"
 noteSkin2 = "couplesp4"
 
@@ -45,9 +46,9 @@ def calcBPM(beat, bpms):
 
 def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
     # KURNA OFFSET JAK JA GO NIE NAWIDZeKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
-    noteSkinOffset = 0.001
-    thirdPlayerOffset = 0.003
-    attackTime = 0.003
+    noteSkinOffset = -0.001
+    thirdPlayerOffset = 0.002
+    attackTime = 0.002
     # KURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
 
     bpms = sm.bpms
@@ -137,8 +138,9 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
             # TODO changing BPMs
             new_stops.add(b)
             new_stops.add(b+1.0/48)
+            print(calcBPM(b, sm.bpms) - sm.offset)
             new_attacks.add(
-                (calcBPM(b, sm.bpms) + noteSkinOffset - sm.offset, attackTime, noteskin))
+                (calcBPM(b, sm.bpms) + noteSkinOffset+ thirdPlayerOffset - sm.offset, attackTime, noteskin))
             yellows.append((b+2.0/48, n))
         if(fourPlayers == 1):
             for b, n in notes.layers[3]:
@@ -146,8 +148,9 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
                 new_stops.add(b)
                 new_stops.add(b+1.0/48)
                 new_stops.add(b+2.0/48)
+                print(calcBPM(b, sm.bpms) - sm.offset)
                 new_attacks.add(
-                    (calcBPM(b+1.0/48, sm.bpms) + noteSkinOffset - thirdPlayerOffset - sm.offset, attackTime, noteskin2))
+                    (calcBPM(b, sm.bpms) + noteSkinOffset + thirdPlayerOffset*2 - sm.offset, attackTime, noteskin2))
                 fourths.append((b+3.0/48, n))
 
         # print(new_attacks)
@@ -183,8 +186,8 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
         ns = stops.get(beat, 0)
         ns += stops.get(nb, 0)
         ns += s
-        ns = round(ns, 3)          # New stop value one 192nd down
-        s = round(s, 3)
+        ns =  round(ns, 3)    # New stop value one 192nd down
+        s = math.floor(s*1000)/1000   
 
         stops.update([(beat, -s), (nb, ns)])
 
