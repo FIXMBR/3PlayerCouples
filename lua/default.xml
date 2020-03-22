@@ -1,31 +1,77 @@
 `<ActorFrame><children>
 
-	<!-- Three letters; 1 = placement, 2 = color, 3 = direction -->
+	<!-- Three letters; 1 = placement, 2 = player number, 3 = direction -->
 	`<ActorFrame OnCommand="rotationz,90;x,SCREEN_CENTER_X-270;y,SCREEN_CENTER_Y" ><children>
-		<ActorFrame InitCommand="%function(self) couples_lbl = self; end" OnCommand="zoom,0" ><children> <Layer File="blue" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_lyl = self; end" OnCommand="zoom,0" ><children> <Layer File="yellow" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_lrl = self; end" OnCommand="zoom,0" ><children> <Layer File="red" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_lbr = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="blue" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_lyr = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="yellow" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_lrr = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="red" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_l1l = self; end" OnCommand="zoom,0" ><children> <Layer File="p1" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_l2l = self; end" OnCommand="zoom,0" ><children> <Layer File="p2" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_l3l = self; end" OnCommand="zoom,0" ><children> <Layer File="p3" /> <Layer File="whitep3" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_l4l = self; end" OnCommand="zoom,0" ><children> <Layer File="p4" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_l1r = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p1" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_l2r = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p2" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_l3r = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p3" /> <Layer File="whitep3" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_l4r = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p4" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
 	</children></ActorFrame>
 		
 	`<ActorFrame OnCommand="rotationz,180;x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+175" ><children>
-		<ActorFrame InitCommand="%function(self) couples_dbu = self; end" OnCommand="zoom,0" ><children> <Layer File="blue" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_dyu = self; end" OnCommand="zoom,0" ><children> <Layer File="yellow" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_dru = self; end" OnCommand="zoom,0" ><children> <Layer File="red" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_dbd = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="blue" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_dyd = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="yellow" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_drd = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="red" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_d1u = self; end" OnCommand="zoom,0" ><children> <Layer File="p1" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_d2u = self; end" OnCommand="zoom,0" ><children> <Layer File="p2" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_d3u = self; end" OnCommand="zoom,0" ><children> <Layer File="p3" /> <Layer File="whitep3" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_d4u = self; end" OnCommand="zoom,0" ><children> <Layer File="p4" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_d1d = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p1" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_d2d = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p2" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_d3d = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p3" /> <Layer File="whitep3" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_d4d = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p4" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+	</children></ActorFrame>
+
+	`<ActorFrame OnCommand="rotationz,180;x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-175" ><children>
+		<ActorFrame InitCommand="%function(self) couples_u1u = self; end" OnCommand="zoom,0" ><children> <Layer File="p1" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_u2u = self; end" OnCommand="zoom,0" ><children> <Layer File="p2" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_u3u = self; end" OnCommand="zoom,0" ><children> <Layer File="p3" /> <Layer File="whitep3" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_u4u = self; end" OnCommand="zoom,0" ><children> <Layer File="p4" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_u1d = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p1" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_u2d = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p2" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_u3d = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p3" /> <Layer File="whitep3" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_u4d = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p4" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
 	</children></ActorFrame>
 	
 	`<ActorFrame OnCommand="rotationz,90;x,SCREEN_CENTER_X+270;y,SCREEN_CENTER_Y" ><children>
-		<ActorFrame InitCommand="%function(self) couples_rbl = self; end" OnCommand="zoom,0" ><children> <Layer File="blue" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_ryl = self; end" OnCommand="zoom,0" ><children> <Layer File="yellow" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_rrl = self; end" OnCommand="zoom,0" ><children> <Layer File="red" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_rbr = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="blue" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_ryr = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="yellow" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
-		<ActorFrame InitCommand="%function(self) couples_rrr = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="red" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_r1l = self; end" OnCommand="zoom,0" ><children> <Layer File="p1" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_r2l = self; end" OnCommand="zoom,0" ><children> <Layer File="p2" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_r3l = self; end" OnCommand="zoom,0" ><children> <Layer File="p3" /> <Layer File="whitep3" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_r4l = self; end" OnCommand="zoom,0" ><children> <Layer File="p4" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_r1r = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p1" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_r2r = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p2" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_r3r = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p3" /> <Layer File="whitep3" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_r4r = self; end" OnCommand="zoom,0;rotationz,180" ><children> <Layer File="p4" /> <Layer File="white" OnCommand="croptop,-0.5;cropbottom,1.7;fadetop,0.1;fadebottom,0.1;queuecommand,Loop" LoopCommand="croptop,-0.5;cropbottom,1;linear,0.75;croptop,1.5;cropbottom,-0.8;queuecommand,Loop" /> </children></ActorFrame>
+	</children></ActorFrame>
+
+	<!-- READY indicators (to get player ready to get in) -->
+	`<ActorFrame OnCommand="x,SCREEN_CENTER_X+370;y,SCREEN_CENTER_Y" ><children>
+		<ActorFrame InitCommand="%function(self) couples_r1lready = self; end" OnCommand="zoomy,48" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#77221188;EffectColor2,#ff6633dd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_r2lready = self; end" OnCommand="zoomy,48" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#11337788;EffectColor2,#3388ffdd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_r3lready = self; end" OnCommand="zoomy,48" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#55771188;EffectColor2,#ccff33dd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_r4lready = self; end" OnCommand="zoomy,48" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#77777788;EffectColor2,#eeeeeedd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+	</children></ActorFrame>
+
+	`<ActorFrame OnCommand="x,SCREEN_CENTER_X-370;y,SCREEN_CENTER_Y" ><children>
+		<ActorFrame InitCommand="%function(self) couples_l1rready = self; end" OnCommand="zoomy,48;rotationz,180" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#77221188;EffectColor2,#ff6633dd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_l2rready = self; end" OnCommand="zoomy,48;rotationz,180" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#11337788;EffectColor2,#3388ffdd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_l3rready = self; end" OnCommand="zoomy,48;rotationz,180" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#55771188;EffectColor2,#ccff33dd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_l4rready = self; end" OnCommand="zoomy,48;rotationz,180" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#77777788;EffectColor2,#eeeeeedd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+	</children></ActorFrame>
+
+	`<ActorFrame OnCommand="rotationz,90;x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+290" ><children>
+		<ActorFrame InitCommand="%function(self) couples_d1uready = self; end" OnCommand="zoomy,20" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#77221188;EffectColor2,#ff6633dd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_d2uready = self; end" OnCommand="zoomy,20" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#11337788;EffectColor2,#3388ffdd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_d3uready = self; end" OnCommand="zoomy,20" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#55771188;EffectColor2,#ccff33dd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_d4uready = self; end" OnCommand="zoomy,20" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#77777788;EffectColor2,#eeeeeedd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+	</children></ActorFrame>
+
+	`<ActorFrame OnCommand="rotationz,90;x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-290" ><children>
+		<ActorFrame InitCommand="%function(self) couples_u1dready = self; end" OnCommand="zoomy,20;rotationz,180" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#77221188;EffectColor2,#ff6633dd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_u2dready = self; end" OnCommand="zoomy,20;rotationz,180" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#11337788;EffectColor2,#3388ffdd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_u3dready = self; end" OnCommand="zoomy,20;rotationz,180" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#55771188;EffectColor2,#ccff33dd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
+		<ActorFrame InitCommand="%function(self) couples_u4dready = self; end" OnCommand="zoomy,20;rotationz,180" ><children> <Layer File="ready" OnCommand="diffusealpha,1;EffectClock,beat;DiffuseRamp;EffectColor1,#77777788;EffectColor2,#eeeeeedd;effectperiod,0.95;EffectDelay,0.05;EffectOffset,0.05" />  </children></ActorFrame>
 	</children></ActorFrame>
 	
 	<Layer
@@ -42,44 +88,85 @@
 				arrowrot1 = 0;
 				arrowrot2 = 0;
 				diff = tonumber(GAMESTATE:GetCurrentSteps(PLAYER_1):GetDifficulty());
-				
-				curindicpattern = 1;
+				cur_leave_indicpattern = 1;
+				cur_return_indicpattern = 1;
 
-				 -- {beat,'xyz'} --
+				-- Adjust the offset of arrow animations here (in seconds) --
+				leave_var = 0.4;
+				return_var = 0.4;
+				
+
+				------------------
+				--  INDICATORS  --
+				------------------
+
+				-- diff_leave_indicactivity - enter animations with arrow pointing out of the screen (player leaves pads) --
+				-- diff_return_indicactivity - enter animations with arrow pointing to the center of the screen (player returns to pads) --
+				-- beat should be equal to the player's very last note (leave) or to the player's very first note (return) --
+				-- leave: {beat,'xyz'} --
+				-- return: {beat,'xyz',warning animation length in seconds - 0 for no animation, >=1 for animation} --
 
 				-- NOVICE --
-				noviceindicactivity = {
+				novice_leave_indicactivity = {
 
 								};
 
-				 -- EASY --
-				easyindicactivity = {
+				novice_return_indicactivity = {
+
+								};
+
+				-- EASY --
+				easy_leave_indicactivity = {
+
+								};
+
+				easy_return_indicactivity = {
 
 								};
 
 				-- MEDIUM --
-				mediumindicactivity = {
+				medium_leave_indicactivity = {
+					-- {10,'l1r'}, --
+					-- {16,'r2l'} --
+								};
 
+				medium_return_indicactivity = {
+					-- {14,'r3l',2} --
 								};
 
 				-- HARD --
-				hardindicactivity = {
+				hard_leave_indicactivity = {
+
+								};
+
+				hard_return_indicactivity = {
 
 								};
 
 				-- EXPERT --
-				expertindicactivity = {
+				expert_leave_indicactivity = {
+
+								};
+
+				expert_return_indicactivity = {
 
 								};
 
 				-- EDIT --
-				editindicactivity = {
+				edit_leave_indicactivity = {
 
 								};
-				
-				
-				function SwitchIndicator(a1)
-					if a1 == 'rrr' or a1 == 'rbr'or a1 == 'ryr' or a1 == 'drd' or a1 == 'dbd' or a1 == 'dyd' then
+
+				edit_return_indicactivity = {
+
+								};
+
+				-- end INDICATORS --
+
+
+
+				function SwitchIndicator(a1,length)
+					if a1 == 'r1r' or a1 == 'r2r'or a1 == 'r3r' or a1 == 'r4r' or a1 == 'd1d' or a1 == 'd2d' or a1 == 'd3d' or a1 == 'd4d' then
 						_G['couples_'..a1]:decelerate(0.5);
 						_G['couples_'..a1]:zoom(1.5);
 						_G['couples_'..a1]:accelerate(0.5);
@@ -88,7 +175,7 @@
 						_G['couples_'..a1]:zoom(0);
 						_G['couples_'..a1]:linear(0.1);
 						_G['couples_'..a1]:addy(100);
-					elseif a1 == 'lrl' or a1 == 'lbl' or a1 == 'lyl' then
+					elseif a1 == 'l1l' or a1 == 'l2l' or a1 == 'l3l' or a1 == 'l4l' or a1 == 'u1u' or a1 == 'u2u' or a1 == 'u3u' or a1 == 'u4u' then
 						_G['couples_'..a1]:decelerate(0.5);
 						_G['couples_'..a1]:zoom(1.5);
 						_G['couples_'..a1]:accelerate(0.5);
@@ -97,7 +184,8 @@
 						_G['couples_'..a1]:zoom(0);
 						_G['couples_'..a1]:linear(0.1);
 						_G['couples_'..a1]:addy(-100);
-					elseif a1 == 'lrr' or a1 == 'lbr' or a1 == 'lyr' then
+					elseif a1 == 'l1r' or a1 == 'l2r' or a1 == 'l3r' or a1 == 'l4r' or a1 == 'u1d' or a1 == 'u2d' or a1 == 'u3d' or a1 == 'u4d' then
+						if length == 0 then
 						_G['couples_'..a1]:linear(0.1);
 						_G['couples_'..a1]:addy(100);
 						_G['couples_'..a1]:linear(0.1);
@@ -107,7 +195,26 @@
 						_G['couples_'..a1]:sleep(0.2);
 						_G['couples_'..a1]:linear(0.1);
 						_G['couples_'..a1]:zoom(0);
-					elseif a1 == 'rrl' or a1 == 'rbl' or a1 == 'dbu' or a1 == 'dru'or a1 == 'ryl' or a1 == 'dyu' then
+						elseif length >= 1 then
+						_G['couples_'..a1..'ready']:sleep(0.5);
+						_G['couples_'..a1..'ready']:decelerate(0.5);
+						_G['couples_'..a1..'ready']:addx(100);
+						_G['couples_'..a1..'ready']:sleep(length-1);
+						_G['couples_'..a1..'ready']:accelerate(0.5);
+						_G['couples_'..a1..'ready']:addx(-100);
+						_G['couples_'..a1]:sleep(length);
+						_G['couples_'..a1]:linear(0.1);
+						_G['couples_'..a1]:addy(100);
+						_G['couples_'..a1]:linear(0.1);
+						_G['couples_'..a1]:zoom(1.5);
+						_G['couples_'..a1]:decelerate(0.6);
+						_G['couples_'..a1]:addy(-100);
+						_G['couples_'..a1]:sleep(0.2);
+						_G['couples_'..a1]:linear(0.1);
+						_G['couples_'..a1]:zoom(0);
+						end
+					elseif a1 == 'r1l' or a1 == 'r2l' or a1 == 'r3l' or a1 == 'r4l' or a1 == 'd1u' or a1 == 'd2u' or a1 == 'd3u' or a1 == 'd4u' then
+						if length == 0 then
 						_G['couples_'..a1]:linear(0.1);
 						_G['couples_'..a1]:addy(-100);
 						_G['couples_'..a1]:linear(0.1);
@@ -117,13 +224,31 @@
 						_G['couples_'..a1]:sleep(0.2);
 						_G['couples_'..a1]:linear(0.1);
 						_G['couples_'..a1]:zoom(0);
+						elseif length >= 1 then
+						_G['couples_'..a1..'ready']:sleep(0.5);
+						_G['couples_'..a1..'ready']:decelerate(0.5);
+						_G['couples_'..a1..'ready']:addx(-100);
+						_G['couples_'..a1..'ready']:sleep(length-1);
+						_G['couples_'..a1..'ready']:accelerate(0.5);
+						_G['couples_'..a1..'ready']:addx(100);
+						_G['couples_'..a1]:sleep(length);
+						_G['couples_'..a1]:linear(0.1);
+						_G['couples_'..a1]:addy(-100);
+						_G['couples_'..a1]:linear(0.1);
+						_G['couples_'..a1]:zoom(1.5);
+						_G['couples_'..a1]:decelerate(0.6);
+						_G['couples_'..a1]:addy(100);
+						_G['couples_'..a1]:sleep(0.2);
+						_G['couples_'..a1]:linear(0.1);
+						_G['couples_'..a1]:zoom(0);
+						end
 					end
 				end
-				
 				
 				self:queuecommand('Update');
 			end"
 		
+
 		UpdateCommand="%function(self)
 		
 			--if GAMESTATE:IsCourseMode() then
@@ -133,44 +258,74 @@
 
 			if diff == 0 then
 			
-				if curindicpattern <= table.getn(noviceindicactivity) and GAMESTATE:GetSongBeat()>=noviceindicactivity[curindicpattern][1] then
-					SwitchIndicator(noviceindicactivity[curindicpattern][2],noviceindicactivity[curindicpattern][3],noviceindicactivity[curindicpattern][4]);
-					curindicpattern = curindicpattern + 1;
+				if cur_leave_indicpattern <= table.getn(novice_leave_indicactivity) and GAMESTATE:GetSongBeat()+(GAMESTATE:GetCurBPS()*leave_var)>=novice_leave_indicactivity[cur_leave_indicpattern][1] then
+					SwitchIndicator(novice_leave_indicactivity[cur_leave_indicpattern][2],novice_leave_indicactivity[cur_leave_indicpattern][3],novice_leave_indicactivity[cur_leave_indicpattern][4]);
+					cur_leave_indicpattern = cur_leave_indicpattern + 1;
+				end
+
+				if cur_return_indicpattern <= table.getn(novice_return_indicactivity) and GAMESTATE:GetSongBeat()+(GAMESTATE:GetCurBPS()*(return_var+novice_return_indicactivity[cur_return_indicpattern][3]+1.1))>=novice_return_indicactivity[cur_return_indicpattern][1] then
+					SwitchIndicator(novice_return_indicactivity[cur_return_indicpattern][2],novice_return_indicactivity[cur_return_indicpattern][3]);
+					cur_return_indicpattern = cur_return_indicpattern + 1;
 				end
 
 			elseif diff == 1 then
 			
-				if curindicpattern <= table.getn(easyindicactivity) and GAMESTATE:GetSongBeat()>=easyindicactivity[curindicpattern][1] then
-					SwitchIndicator(easyindicactivity[curindicpattern][2],easyindicactivity[curindicpattern][3],easyindicactivity[curindicpattern][4]);
-					curindicpattern = curindicpattern + 1;
+				if cur_leave_indicpattern <= table.getn(easy_leave_indicactivity) and GAMESTATE:GetSongBeat()+(GAMESTATE:GetCurBPS()*leave_var)>=easy_leave_indicactivity[cur_leave_indicpattern][1] then
+					SwitchIndicator(easy_leave_indicactivity[cur_leave_indicpattern][2]);
+					cur_leave_indicpattern = cur_leave_indicpattern + 1;
+				end
+
+				if cur_return_indicpattern <= table.getn(easy_return_indicactivity) and GAMESTATE:GetSongBeat()+(GAMESTATE:GetCurBPS()*(return_var+easy_return_indicactivity[cur_return_indicpattern][3]+1.1))>=easy_return_indicactivity[cur_return_indicpattern][1] then
+					SwitchIndicator(easy_return_indicactivity[cur_return_indicpattern][2],easy_return_indicactivity[cur_return_indicpattern][3]);
+					cur_return_indicpattern = cur_return_indicpattern + 1;
 				end
 
 			elseif diff == 2 then
 			
-				if curindicpattern <= table.getn(mediumindicactivity) and GAMESTATE:GetSongBeat()>=mediumindicactivity[curindicpattern][1] then
-					SwitchIndicator(mediumindicactivity[curindicpattern][2],mediumindicactivity[curindicpattern][3],mediumindicactivity[curindicpattern][4]);
-					curindicpattern = curindicpattern + 1;
+				if cur_leave_indicpattern <= table.getn(medium_leave_indicactivity) and GAMESTATE:GetSongBeat()+(GAMESTATE:GetCurBPS()*leave_var)>=medium_leave_indicactivity[cur_leave_indicpattern][1] then
+					SwitchIndicator(medium_leave_indicactivity[cur_leave_indicpattern][2],medium_leave_indicactivity[cur_leave_indicpattern][3],medium_leave_indicactivity[cur_leave_indicpattern][4]);
+					cur_leave_indicpattern = cur_leave_indicpattern + 1;
+				end
+
+				if cur_return_indicpattern <= table.getn(medium_return_indicactivity) and GAMESTATE:GetSongBeat()+(GAMESTATE:GetCurBPS()*(return_var+medium_return_indicactivity[cur_return_indicpattern][3]+1.1))>=medium_return_indicactivity[cur_return_indicpattern][1] then
+					SwitchIndicator(medium_return_indicactivity[cur_return_indicpattern][2],medium_return_indicactivity[cur_return_indicpattern][3]);
+					cur_return_indicpattern = cur_return_indicpattern + 1;
 				end
 
 			elseif diff == 3 then
 			
-				if curindicpattern <= table.getn(hardindicactivity) and GAMESTATE:GetSongBeat()>=hardindicactivity[curindicpattern][1] then
-					SwitchIndicator(hardindicactivity[curindicpattern][2],hardindicactivity[curindicpattern][3],hardindicactivity[curindicpattern][4]);
-					curindicpattern = curindicpattern + 1;
+				if cur_leave_indicpattern <= table.getn(hard_leave_indicactivity) and GAMESTATE:GetSongBeat()+(GAMESTATE:GetCurBPS()*leave_var)>=hard_leave_indicactivity[cur_leave_indicpattern][1] then
+					SwitchIndicator(hard_leave_indicactivity[cur_leave_indicpattern][2],hard_leave_indicactivity[cur_leave_indicpattern][3],hard_leave_indicactivity[cur_leave_indicpattern][4]);
+					cur_leave_indicpattern = cur_leave_indicpattern + 1;
+				end
+
+				if cur_return_indicpattern <= table.getn(hard_return_indicactivity) and GAMESTATE:GetSongBeat()+(GAMESTATE:GetCurBPS()*(return_var+hard_return_indicactivity[cur_return_indicpattern][3]+1.1))>=hard_return_indicactivity[cur_return_indicpattern][1] then
+					SwitchIndicator(hard_return_indicactivity[cur_return_indicpattern][2],hard_return_indicactivity[cur_return_indicpattern][3]);
+					cur_return_indicpattern = cur_return_indicpattern + 1;
 				end
 
 			elseif diff == 4 then
 			
-				if curindicpattern <= table.getn(expertindicactivity) and GAMESTATE:GetSongBeat()>=expertindicactivity[curindicpattern][1] then
-					SwitchIndicator(expertindicactivity[curindicpattern][2],expertindicactivity[curindicpattern][3],expertindicactivity[curindicpattern][4]);
-					curindicpattern = curindicpattern + 1;
+				if cur_leave_indicpattern <= table.getn(expert_leave_indicactivity) and GAMESTATE:GetSongBeat()+(GAMESTATE:GetCurBPS()*leave_var)>=expert_leave_indicactivity[cur_leave_indicpattern][1] then
+					SwitchIndicator(expert_leave_indicactivity[cur_leave_indicpattern][2],expert_leave_indicactivity[cur_leave_indicpattern][3],expert_leave_indicactivity[cur_leave_indicpattern][4]);
+					cur_leave_indicpattern = cur_leave_indicpattern + 1;
 				end
 
-			else
+				if cur_return_indicpattern <= table.getn(expert_return_indicactivity) and GAMESTATE:GetSongBeat()+(GAMESTATE:GetCurBPS()*(return_var+expert_return_indicactivity[cur_return_indicpattern][3]+1.1))>=expert_return_indicactivity[cur_return_indicpattern][1] then
+					SwitchIndicator(expert_return_indicactivity[cur_return_indicpattern][2],expert_return_indicactivity[cur_return_indicpattern][3]);
+					cur_return_indicpattern = cur_return_indicpattern + 1;
+				end
 
-				if curindicpattern <= table.getn(editindicactivity) and GAMESTATE:GetSongBeat()>=editindicactivity[curindicpattern][1] then
-					SwitchIndicator(editindicactivity[curindicpattern][2],editindicactivity[curindicpattern][3],editindicactivity[curindicpattern][4]);
-					curindicpattern = curindicpattern + 1;
+			elseif diff == 5 then
+			
+				if cur_leave_indicpattern <= table.getn(edit_leave_indicactivity) and GAMESTATE:GetSongBeat()+(GAMESTATE:GetCurBPS()*leave_var)>=edit_leave_indicactivity[cur_leave_indicpattern][1] then
+					SwitchIndicator(edit_leave_indicactivity[cur_leave_indicpattern][2],edit_leave_indicactivity[cur_leave_indicpattern][3],edit_leave_indicactivity[cur_leave_indicpattern][4]);
+					cur_leave_indicpattern = cur_leave_indicpattern + 1;
+				end
+
+				if cur_return_indicpattern <= table.getn(edit_return_indicactivity) and GAMESTATE:GetSongBeat()+(GAMESTATE:GetCurBPS()*(return_var+edit_return_indicactivity[cur_return_indicpattern][3]+1.1))>=edit_return_indicactivity[cur_return_indicpattern][1] then
+					SwitchIndicator(edit_return_indicactivity[cur_return_indicpattern][2],edit_return_indicactivity[cur_return_indicpattern][3]);
+					cur_return_indicpattern = cur_return_indicpattern + 1;
 				end
 
 			end
@@ -178,22 +333,17 @@
 			-- End choosing difficulty --
 				
 				
-				
 				self:queuecommand('Update2');
 			
 			--end
 			
 		end"
-  
 
 		Update2Command="%function(self)
 		self:sleep(0.1);
 		self:queuecommand('Update');
 		end"
 		
-		
-		
 	/>
-
 	
 </children></ActorFrame>
