@@ -149,7 +149,6 @@ class SM:
             elif item == "OFFSET":
                 s += "#%s:%.3f;" % (item, self.offset) + LF
             elif item == "FGCHANGES":
-                print(self.params[item])
                 if self.params[item] == ['']:
                     s += "#FGCHANGES:0.000=lua=1.000=0=0=1=====;"+ LF
                 else:
