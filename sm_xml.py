@@ -44,10 +44,11 @@ class XML:
         s+=LF
         s+="InitCommand=\"%function(self)"+LF
         s+="offset = PREFSMAN:GetPreference('GlobalOffsetSeconds');"+LF
+        s+="player = (GAMESTATE:IsPlayerEnabled(0) and 1 or 2);"+LF
 
         for i in range(len(self.attacks)):
             (a, b, c) = self.attacks[i]
-            s += "GAMESTATE:LaunchAttack(%.3f-offset,%.3f,'%s');" % (a, b, c) + LF
+            s += "GAMESTATE:LaunchAttack(%.6f-offset,%.6f,'%s',player);" % (a, b, c) + LF
         
         s+="end\""+LF
         s+=self.xml_contents[1].replace("\n", "\r\n")

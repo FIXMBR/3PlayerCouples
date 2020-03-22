@@ -46,8 +46,8 @@ def calcBPM(beat, bpms):
 
 def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
     # KURNA OFFSET JAK JA GO NIE NAWIDZeKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
-    noteSkinOffset = -0.001
-    thirdPlayerOffset = 0.002
+    noteSkinOffset = -0.002
+    thirdPlayerOffset = 0.003
     attackTime = 0.002
     # KURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
 
@@ -140,7 +140,7 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
             new_stops.add(b+1.0/48)
             print(calcBPM(b, sm.bpms) - sm.offset)
             new_attacks.add(
-                (calcBPM(b, sm.bpms) + noteSkinOffset+ thirdPlayerOffset - sm.offset, attackTime, noteskin))
+                (calcBPM(b, sm.bpms) - sm.offset + thirdPlayerOffset  + noteSkinOffset, attackTime, noteskin)) # TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
             yellows.append((b+2.0/48, n))
         if(fourPlayers == 1):
             for b, n in notes.layers[3]:
@@ -150,7 +150,7 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
                 new_stops.add(b+2.0/48)
                 print(calcBPM(b, sm.bpms) - sm.offset)
                 new_attacks.add(
-                    (calcBPM(b, sm.bpms) + noteSkinOffset + thirdPlayerOffset*2 - sm.offset, attackTime, noteskin2))
+                    (calcBPM(b, sm.bpms) - sm.offset + thirdPlayerOffset*2 + noteSkinOffset, attackTime, noteskin2)) # TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
                 fourths.append((b+3.0/48, n))
 
         # print(new_attacks)
@@ -180,14 +180,14 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
             curbpm = bpms[bi][1]
             bi += 1
 
-        nb = round(beat+1.0/48, 3)  # Beat plus one 192nd
+        nb = beat+1.0/48  # Beat plus one 192nd
 
         s = 60.0/curbpm/48+0.0005  # Time between 192nd notes
         ns = stops.get(beat, 0)
         ns += stops.get(nb, 0)
         ns += s
-        ns =  round(ns, 3)    # New stop value one 192nd down
-        s = math.floor(s*1000)/1000   
+        ns =  ns   # New stop value one 192nd down
+        s = s
 
         stops.update([(beat, -s), (nb, ns)])
 
@@ -196,68 +196,32 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
 
     filteredStops = []
 
-    if(fourPlayers == 0):
-        lastWasWarp = False
-        lastValue = 0.0
-        removeNext = False
-        doubleNext = False
-        for i in stops:
-            if removeNext:
-
-                removeNext = False
-                doubleNext = True
-            elif doubleNext:
-                doubleNext = False
-                filteredStops.append((i[0], (i[1]-lastValue)))
-            else:
-                if lastWasWarp:
-                    if i[1] < 0:
-                        filteredStops.append((i[0], i[1]+thirdPlayerOffset))
-                        lastValue = i[1]+thirdPlayerOffset
+    
+    currentBeat = 0
+    for stop in stops:
+        if(stop[0] > currentBeat):
+            currentBeat = stop[0]
+            searchForWarps = []
+            lastStop = []
+            for stop in stops:
+                if stop[0] >= currentBeat and stop[0] < currentBeat+0.063:
+                    if (stop[1] < 0):
+                        searchForWarps.append(stop)
                     else:
-                        filteredStops.append(i)
+                        lastStop = stop
+            currentBeat = lastStop[0]
+            toCompensate = 0.0
+            i = False
+            for warp in searchForWarps:
+                if i:
+                    filteredStops.append(
+                        (warp[0], warp[1]+thirdPlayerOffset))
+                    toCompensate += warp[1]+thirdPlayerOffset
                 else:
-                    filteredStops.append(i)
-
-            if lastWasWarp:
-                if i[1] < 0:
-                    removeNext = True
-                    lastWasWarp = False
-                else:
-                    lastWasWarp = False
-
-            elif i[1] < 0:
-                lastWasWarp = True
-            else:
-                lastWasWarp = False
-            # print i
-    else:
-
-        currentBeat = 0
-        for stop in stops:
-            if(stop[0] > currentBeat):
-                currentBeat = stop[0]
-                searchForWarps = []
-                lastStop = []
-                for stop in stops:
-                    if stop[0] >= currentBeat and stop[0] < currentBeat+0.063:
-                        if (stop[1] < 0):
-                            searchForWarps.append(stop)
-                        else:
-                            lastStop = stop
-                currentBeat = lastStop[0]
-                toCompensate = 0.0
-                i = False
-                for warp in searchForWarps:
-                    if i:
-                        filteredStops.append(
-                            (warp[0], warp[1]+thirdPlayerOffset))
-                        toCompensate += warp[1]+thirdPlayerOffset
-                    else:
-                        filteredStops.append((warp[0], warp[1]))
-                        toCompensate += warp[1]
-                    i = True
-                filteredStops.append((lastStop[0], -toCompensate))
+                    filteredStops.append((warp[0], warp[1]))
+                    toCompensate += warp[1]
+                i = True
+            filteredStops.append((lastStop[0], -toCompensate))
 
     sm.stops = filteredStops
     xml.attacks = new_attacks

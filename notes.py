@@ -45,7 +45,7 @@ class Notes:
 				for j in range(p):
 					n = m[self.width*j:self.width*j+self.width]
 					if n != "0" * self.width:
-						notes.append((round(4*i + 4*j/float(p), 3), n))
+						notes.append((round(4*i + 4*j/float(p), 6), n))
 			self.layers.append(notes)
 
 			# TODO: Freezes

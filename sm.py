@@ -144,7 +144,7 @@ class SM:
                     if i > 0:
                         s += ","
                     (a, b) = self.stops[i]
-                    s += "%.3f=%.3f" % (a, b) + LF
+                    s += "%.6f=%.6f" % (a, b) + LF
                 s += ";" + LF
             elif item == "OFFSET":
                 s += "#%s:%.3f;" % (item, self.offset) + LF
