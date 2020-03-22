@@ -16,7 +16,7 @@ Also works with 4 players
   - for four players conversion you need to have 2 routine charts with the same name, the one with lower difficulty will be converted to players 1 and 2, the other one will be 3 and 4
 4. run `triples.exe` or `triples.py` - it requires python 3
 5. set the noteskin for the third player and run
-  -noteskin2 is for player 4
-  -for 4 players conversion click the checkbox
+  - noteskin2 is for player 4
+  - for 4 players conversion click the checkbox
 6. select your source `.sm` file, then select your `default.xml`
-  -make sure the output file is the only .sm file in song folder, also you probably need to restart nITG
+  - make sure the output file is the only .sm file in song folder, also you probably need to restart nITG
