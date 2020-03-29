@@ -45,12 +45,7 @@ def calcBPM(beat, bpms):
 
 
 def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
-    # KURNA OFFSET JAK JA GO NIE NAWIDZeKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
-    noteSkinOffset = -0.002
-    thirdPlayerOffset = 0.003
-    attackTime = 0.002
-    # KURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
-
+    
     bpms = sm.bpms
     stops = dict(sm.stops)
 
@@ -119,6 +114,13 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
     new_stops = set()
     new_attacks = set()
 
+    # KURNA OFFSET JAK JA GO NIE NAWIDZeKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
+    noteSkinOffset = 0.000
+    thirdPlayerOffset = 0.003
+    attackTime = 0.0035
+    # KURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZEKURNA OFFSET JAK JA GO NIE NAWIDZE
+
+
     for notes in couples:
         # if(fourPlayers==1):
         #     notes = couples[notes]
@@ -138,9 +140,8 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
             # TODO changing BPMs
             new_stops.add(b)
             new_stops.add(b+1.0/48)
-            print(calcBPM(b, sm.bpms) - sm.offset)
             new_attacks.add(
-                (calcBPM(b, sm.bpms) - sm.offset + thirdPlayerOffset  + noteSkinOffset, attackTime, noteskin)) # TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
+                    ( calcBPM(b, sm.bpms) + (calcBPM(b+1.0/48, sm.bpms) - calcBPM(b, sm.bpms)) -  math.floor((calcBPM(b+1.0/48, sm.bpms) - calcBPM(b, sm.bpms))*1000)/1000 - sm.offset + thirdPlayerOffset + noteSkinOffset, attackTime, noteskin))  # TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
             yellows.append((b+2.0/48, n))
         if(fourPlayers == 1):
             for b, n in notes.layers[3]:
@@ -148,9 +149,8 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
                 new_stops.add(b)
                 new_stops.add(b+1.0/48)
                 new_stops.add(b+2.0/48)
-                print(calcBPM(b, sm.bpms) - sm.offset)
                 new_attacks.add(
-                    (calcBPM(b, sm.bpms) - sm.offset + thirdPlayerOffset*2 + noteSkinOffset, attackTime, noteskin2)) # TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
+                    ( calcBPM(b, sm.bpms) + ((calcBPM(b+1.0/48, sm.bpms) - calcBPM(b, sm.bpms)) -  math.floor((calcBPM(b+1.0/48, sm.bpms) - calcBPM(b, sm.bpms))*1000)/1000)*2 - sm.offset + thirdPlayerOffset*2 + noteSkinOffset, attackTime, noteskin2)) # TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
                 fourths.append((b+3.0/48, n))
 
         # print(new_attacks)
@@ -180,15 +180,15 @@ def fancyWithXML(sm, output, noteskin, xml, xmlfile, fourPlayers, noteskin2):
             curbpm = bpms[bi][1]
             bi += 1
 
-        nb = beat+1.0/48  # Beat plus one 192nd
+        nb = math.floor((beat+1.0/48)*1000)/1000   # Beat plus one 192nd
 
-        s = 60.0/curbpm/48+0.0005  # Time between 192nd notes
+        s = math.floor((60.0/curbpm/48)*1000)/1000  # Time between 192nd notes
         ns = stops.get(beat, 0)
         ns += stops.get(nb, 0)
         ns += s
         ns =  ns   # New stop value one 192nd down
         s = s
-
+        
         stops.update([(beat, -s), (nb, ns)])
 
     stops = [x for x in list(stops.items())]
