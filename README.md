@@ -9,7 +9,9 @@ Also works with 4 players
 
 [Downloads](https://github.com/FIXMBR/3PlayerCouples/releases/)
 
-1. copy couplesp3 to your noteskin folder (or you can change 3rd player noteskin in the UI)
+1. copy noteskins to your noteskin folder (or change noteskin in the UI).
+  - v3 is for nITG v3 and v4 is for nITG v4 and up
+  - copy lua folder to your song directory
 2. create couples (routine) chart preferably in arrowvortex
 3. create doubles chart (for the third player) with the same difficulty as routine
   - backup your sm file before conversion, any file specified as an output will be overwritten, and your original - "source" charts will be lost
